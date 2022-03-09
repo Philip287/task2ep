@@ -24,6 +24,7 @@
             <element name="sms prise" type="integer"/>
             <element name="date-connec-tariff" type="date" default="2022-01-01"/>
         </sequence>
+        <attribute name="call-price" use="required" type="tns:callPrice"/>
         <attribute name="id" use="required" type="tns:tariffId"/>
         <attribute name="operator-name" use="required" type="tns:operatorName"/>
         <attribute name="parameters" use="required" type="tns:ParametersTariff"/>
@@ -80,6 +81,12 @@
         </complexContent>
     </complexType>
 
+    <complexType name="callPrice">
+        <element name="cost-inNetwork-calls" type="integer"/>
+        <element name="cost-off-network-calls" type="integer"/>
+        <element name="cost-landline-phone-calls" type="integer"/>
+    </complexType>
+
     <simpleType name="smsPrise">
         <restriction base="integer">
             <minInclusive value="0"/>
@@ -109,5 +116,6 @@
             <pattern value="\w{2}-\d{5}"/>
         </restriction>
     </simpleType>
+
 
 </schema>

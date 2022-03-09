@@ -4,35 +4,35 @@ import java.util.Objects;
 import java.util.OptionalInt;
 
 public class CallPrice {
-    private OptionalInt costInNetworkCalls;
-    private OptionalInt costOffNetworkCalls;
-    private OptionalInt costLandlinePhoneCalls;
+    private Integer costInNetworkCalls;
+    private Integer costOffNetworkCalls;
+    private Integer costLandlinePhoneCalls;
 
-    public OptionalInt getCostInNetworkCalls() {
+    public Integer getCostInNetworkCalls() {
         return costInNetworkCalls;
     }
 
-    public void setCostInNetworkCalls(OptionalInt costInNetworkCalls) {
+    public void setCostInNetworkCalls(Integer costInNetworkCalls) {
         this.costInNetworkCalls = costInNetworkCalls;
     }
 
-    public OptionalInt getCostOffNetworkCalls() {
+    public Integer getCostOffNetworkCalls() {
         return costOffNetworkCalls;
     }
 
-    public void setCostOffNetworkCalls(OptionalInt costOffNetworkCalls) {
+    public void setCostOffNetworkCalls(Integer costOffNetworkCalls) {
         this.costOffNetworkCalls = costOffNetworkCalls;
     }
 
-    public OptionalInt getCostLandlinePhoneCalls() {
+    public Integer getCostLandlinePhoneCalls() {
         return costLandlinePhoneCalls;
     }
 
-    public void setCostLandlinePhoneCalls(OptionalInt costLandlinePhoneCalls) {
+    public void setCostLandlinePhoneCalls(Integer costLandlinePhoneCalls) {
         this.costLandlinePhoneCalls = costLandlinePhoneCalls;
     }
 
-    public CallPrice(OptionalInt costInNetworkCalls, OptionalInt costOffNetworkCalls, OptionalInt costLandlinePhoneCalls) {
+    public CallPrice(Integer costInNetworkCalls, Integer costOffNetworkCalls, Integer costLandlinePhoneCalls) {
         this.costInNetworkCalls = costInNetworkCalls;
         this.costOffNetworkCalls = costOffNetworkCalls;
         this.costLandlinePhoneCalls = costLandlinePhoneCalls;
@@ -50,8 +50,8 @@ public class CallPrice {
     @Override
     public int hashCode() {
         int hashCode = 1;
-        hashCode = 31 * hashCode + getCostInNetworkCalls().getAsInt()
-                + getCostOffNetworkCalls().getAsInt() + getCostLandlinePhoneCalls().getAsInt() * 2;
+        hashCode = 31 * hashCode + getCostInNetworkCalls()
+                + getCostOffNetworkCalls() + getCostLandlinePhoneCalls() * 2;
         return hashCode;
     }
 

@@ -8,17 +8,17 @@ public abstract class AbstractTariff {
     private String id;
     private String tariffName;
     private OperatorName operatorName;
-    private OptionalInt monthPayRoll;
+    private Integer monthPayRoll;
     private CallPrice callprice;
-    private OptionalInt smsPrise;
+    private Integer smsPrise;
     private ParametersTariff parameters;
     private LocalDate dateСonnectTariff;
 
     public AbstractTariff() {
     }
 
-    public AbstractTariff(String id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll,
-                          CallPrice callprice, OptionalInt smsPrise, ParametersTariff parameters,
+    public AbstractTariff(String id, String tariffName, OperatorName operatorName, Integer monthPayRoll,
+                          CallPrice callprice, Integer smsPrise, ParametersTariff parameters,
                           LocalDate dateСonnectTariff) {
         this.id = id;
         this.tariffName = tariffName;
@@ -54,11 +54,11 @@ public abstract class AbstractTariff {
         this.operatorName = operatorName;
     }
 
-    public OptionalInt getMonthPayRoll() {
+    public Integer getMonthPayRoll() {
         return monthPayRoll;
     }
 
-    public void setMonthPayRoll(OptionalInt monthPayRoll) {
+    public void setMonthPayRoll(Integer monthPayRoll) {
         this.monthPayRoll = monthPayRoll;
     }
 
@@ -70,11 +70,11 @@ public abstract class AbstractTariff {
         this.callprice = callprice;
     }
 
-    public OptionalInt getSmsPrise() {
+    public Integer getSmsPrise() {
         return smsPrise;
     }
 
-    public void setSmsPrise(OptionalInt smsPrise) {
+    public void setSmsPrise(Integer smsPrise) {
         this.smsPrise = smsPrise;
     }
 
@@ -110,7 +110,7 @@ public abstract class AbstractTariff {
     public int hashCode() {
         int hashCode = 1;
         hashCode = 31 * hashCode + getId().hashCode() + getTariffName().hashCode() + getOperatorName().hashCode()
-                + getMonthPayRoll().getAsInt() + getCallprice().hashCode() + getSmsPrise().getAsInt()
+                + getMonthPayRoll() + getCallprice().hashCode() + getSmsPrise()
                 + getParameters().hashCode() + getDateСonnectTariff().hashCode() * 2;
         return hashCode;
     }
