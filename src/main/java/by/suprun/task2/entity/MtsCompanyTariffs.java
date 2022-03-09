@@ -4,19 +4,19 @@ import java.time.LocalDate;
 import java.util.OptionalInt;
 
 
-public class MtsCompany extends AbstractTariff {
-    public MtsCompany() {
+public class MtsCompanyTariffs extends AbstractTariff {
+    public MtsCompanyTariffs() {
         super();
     }
 
-    public MtsCompany(String id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll,
-                      CallPrice callprice, OptionalInt smsPrise, ParametersTariff parameters,
-                      LocalDate dateСonnectTariff) {
+    public MtsCompanyTariffs(String id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll,
+                             CallPrice callprice, OptionalInt smsPrise, ParametersTariff parameters,
+                             LocalDate dateСonnectTariff) {
         super(id, tariffName, operatorName, monthPayRoll, callprice, smsPrise, parameters, dateСonnectTariff);
     }
 
-    public static MtsCompany setNewMtsCompany(AbstractTariff tariff){
-        return new MtsCompany();
+    public static MtsCompanyTariffs setNewMtsCompany(AbstractTariff tariff){
+        return new MtsCompanyTariffs();
     }
 
     @Override

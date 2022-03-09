@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.suprun.com/tariffs"
+        elementFormDefault="qualified">
+
+    <element name="tariffs">
+        <complexType>
+            <sequence>
+                <element ref="tns:tariff " maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="tariff" type="tns:abstractTariff" abstract="true"/>
+    <element name="mts-company-tariffs" type="tns:mts" substitutionGroup="tns:tariff"/>
+    <element name="life-company-tariffs" type="tns:life" substitutionGroup="tns:tariff"/>
+    <element name="tele2-company-tariffs" type="tns:tele2" substitutionGroup="tns:tariff"/>
+
+    <complexType name="abstractTariff">
+        <sequence>
+            <element name="tariff-name" type="string"/>
+            <element name="size" type="integer"/>
+            <element name="month pay roll" type="integer"/>
+            <element name="sms prise" type="integer"/>
+            <element name="date-connec-tariff" type="date" default="2022-01-01"/>
+        </sequence>
+        <attribute name="id" use="required" type="tns:tariffId"/>
+        <attribute name="operator-name" use="required" type="tns:operatorName"/>
+        <attribute name="parameters" use="required" type="tns:ParametersTariff"/>
+    </complexType>
+
+    <complexType name="mts">
+        <complexContent>
+            <extension base="tns:abstractTariff">
+                <sequence>
+                    <element name="operator-name" type="string" default="MTS"/>
+                    <element name="periodicity" default="P1M"/>
+                    <element name="glossy" type="boolean"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="life">
+        <complexContent>
+            <extension base="tns:abstractTariff">
+                <sequence>
+                    <element name="operator-name" type="string" default="life"/>
+                    <element name="periodicity" default="P1M"/>
+                    <element name="glossy" type="boolean"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="tele2">
+        <complexContent>
+            <extension base="tns:abstractTariff">
+                <sequence>
+                    <element name="operator-name" type="string" default="Tele2"/>
+                    <element name="periodicity" default="P1M"/>
+                    <element name="glossy" type="boolean"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ParametersTariff">
+
+    </complexType>
+
+    <simpleType name="smsPrise">
+        <restriction base="integer">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="monthPayRoll">
+        <restriction base="integer">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="operatorName">
+        <restriction base="string">
+            <enumeration value="life"/>
+            <enumeration value="MTS"/>
+            <enumeration value="Tele 2"/>
+            <enumeration value="Bilayn"/>
+            <enumeration value="Megafon"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="tariffId">
+        <restriction base="ID">
+            <pattern value="\w{2}-\d{5}"/>
+        </restriction>
+    </simpleType>
+
+
+</schema>

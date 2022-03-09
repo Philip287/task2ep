@@ -5,7 +5,7 @@ public enum OperatorName {
     MTS("MTS"),
     TELE2("Tele 2"),
     BILAYN("Bilayn"),
-    MEGAFON("Russia");
+    MEGAFON("Megafon");
 
     private final String value;
 
@@ -23,6 +23,6 @@ public enum OperatorName {
                 return count;
             }
         }
-        return null; //todo
+        return null; //todo ?
     }
 }
