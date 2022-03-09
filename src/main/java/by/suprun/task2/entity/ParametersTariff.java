@@ -1,17 +1,16 @@
 package by.suprun.task2.entity;
 
 import java.util.Objects;
-import java.util.OptionalInt;
 
 public class ParametersTariff {
-    private OptionalInt preferredNumber;
+    private Integer preferredNumber;
     private boolean cost12secCollin;
     private boolean cost60secCollin;
-    private OptionalInt costCollin;
-    private OptionalInt costConnect;
+    private Integer costCollin;
+    private Integer costConnect;
 
-    public ParametersTariff(OptionalInt preferredNumber, boolean cost12secCollin,
-                            boolean cost60secCollin, OptionalInt costCollin, OptionalInt costConnect) {
+    public ParametersTariff(Integer preferredNumber, boolean cost12secCollin,
+                            boolean cost60secCollin, Integer costCollin, Integer costConnect) {
         this.preferredNumber = preferredNumber;
         this.cost12secCollin = cost12secCollin;
         this.cost60secCollin = cost60secCollin;
@@ -19,11 +18,11 @@ public class ParametersTariff {
         this.costConnect = costConnect;
     }
 
-    public OptionalInt getPreferredNumber() {
+    public Integer getPreferredNumber() {
         return preferredNumber;
     }
 
-    public void setPreferredNumber(OptionalInt preferredNumber) {
+    public void setPreferredNumber(Integer preferredNumber) {
         this.preferredNumber = preferredNumber;
     }
 
@@ -43,19 +42,19 @@ public class ParametersTariff {
         this.cost60secCollin = cost60sec;
     }
 
-    public OptionalInt getCostCollin() {
+    public Integer getCostCollin() {
         return costCollin;
     }
 
-    public void setCostCollin(OptionalInt costCollin) {
+    public void setCostCollin(Integer costCollin) {
         this.costCollin = costCollin;
     }
 
-    public OptionalInt getCostConnect() {
+    public Integer getCostConnect() {
         return costConnect;
     }
 
-    public void setCostConnect(OptionalInt costConnect) {
+    public void setCostConnect(Integer costConnect) {
         this.costConnect = costConnect;
     }
 
@@ -73,9 +72,9 @@ public class ParametersTariff {
     @Override
     public int hashCode() {
         int hashCode = 1;
-        hashCode = 31 * hashCode + getPreferredNumber().getAsInt()
-                + getCost12secCollin().hashCode() + getCost60secCollin().hashCode() + getCostConnect().getAsInt()
-                + getCostCollin().getAsInt() * 2;
+        hashCode = 31 * hashCode + getPreferredNumber()
+                + getCost12secCollin().hashCode() + getCost60secCollin().hashCode() + getCostConnect()
+                + getCostCollin() * 2;
         return hashCode;
     }
 

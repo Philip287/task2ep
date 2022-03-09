@@ -34,8 +34,9 @@
             <extension base="tns:abstractTariff">
                 <sequence>
                     <element name="operator-name" type="string" default="MTS"/>
-                    <element name="periodicity" default="P1M"/>
-                    <element name="glossy" type="boolean"/>
+                    <element name="cost-60-sec-collin" default="false"/>
+                    <element name="cost-12-sec-collin" default="true"/>
+                    <element name="cost-connect" type="integer" default="0"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -46,8 +47,9 @@
             <extension base="tns:abstractTariff">
                 <sequence>
                     <element name="operator-name" type="string" default="life"/>
-                    <element name="periodicity" default="P1M"/>
-                    <element name="glossy" type="boolean"/>
+                    <element name="cost-60-sec-collin" default="true"/>
+                    <element name="cost-12-sec-collin" default="false"/>
+                    <element name="cost-connect" type="integer" default="40"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -58,15 +60,24 @@
             <extension base="tns:abstractTariff">
                 <sequence>
                     <element name="operator-name" type="string" default="Tele2"/>
-                    <element name="periodicity" default="P1M"/>
-                    <element name="glossy" type="boolean"/>
+                    <element name="cost-60-sec-collin" default="true"/>
+                    <element name="cost-12-sec-collin" default="false"/>
+                    <element name="cost-connect" type="integer" default="99"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
 
     <complexType name="ParametersTariff">
-
+        <complexContent>
+            <sequence>
+                <element name="preferred-number" type="integer"/>
+                <element name="cost-12-sec-collin" type="boolean"/>
+                <element name="cost-60-sec-collin" type="boolean"/>
+                <element name="cost-collin" type="integer"/>
+                <element name="cost-connect" type="integer"/>
+            </sequence>
+        </complexContent>
     </complexType>
 
     <simpleType name="smsPrise">
@@ -98,6 +109,5 @@
             <pattern value="\w{2}-\d{5}"/>
         </restriction>
     </simpleType>
-
 
 </schema>
