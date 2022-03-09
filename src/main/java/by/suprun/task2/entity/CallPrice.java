@@ -43,14 +43,25 @@ public class CallPrice {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CallPrice callPrice = (CallPrice) o;
-        return Objects.equals(costInNetworkCalls, callPrice.costInNetworkCalls) && Objects.equals(costOffNetworkCalls, callPrice.costOffNetworkCalls) && Objects.equals(costLandlinePhoneCalls, callPrice.costLandlinePhoneCalls);
+        return Objects.equals(costInNetworkCalls, callPrice.costInNetworkCalls) && Objects.equals(costOffNetworkCalls,
+                callPrice.costOffNetworkCalls) && Objects.equals(costLandlinePhoneCalls, callPrice.costLandlinePhoneCalls);
     }
 
     @Override
     public int hashCode() {
         int hashCode = 1;
-            hashCode = 31 * hashCode + getCostInNetworkCalls().getAsInt()
-                    + getCostOffNetworkCalls().getAsInt() + getCostLandlinePhoneCalls().getAsInt() * 2;
+        hashCode = 31 * hashCode + getCostInNetworkCalls().getAsInt()
+                + getCostOffNetworkCalls().getAsInt() + getCostLandlinePhoneCalls().getAsInt() * 2;
         return hashCode;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("CallPrice{");
+        sb.append("cost in network calls ='").append(costInNetworkCalls);
+        sb.append(", cost off network  calls=").append(costOffNetworkCalls);
+        sb.append(", cost land line phone calls=").append(costLandlinePhoneCalls);
+        sb.append('}');
+        return sb.toString();
     }
 }
