@@ -5,36 +5,33 @@ import java.util.Objects;
 import java.util.OptionalInt;
 
 public abstract class AbstractTariff {
-    private String id;
+    private long id;
     private String tariffName;
     private OperatorName operatorName;
-    private Integer monthPayRoll;
-    private CallPrice callprice;
-    private Integer smsPrise;
-    private ParametersTariff parameters;
-    private LocalDate dateСonnectTariff;
+    private OptionalInt monthPayRoll;
+    private int smsPrise;
+    private int costConnect;
+    private LocalDate dateСonnectingTariff;
 
     public AbstractTariff() {
     }
 
-    public AbstractTariff(String id, String tariffName, OperatorName operatorName, Integer monthPayRoll,
-                          CallPrice callprice, Integer smsPrise, ParametersTariff parameters,
-                          LocalDate dateСonnectTariff) {
+    public AbstractTariff(long id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll, int smsPrise,
+                          int costConnect, LocalDate dateСonnectingTariff) {
         this.id = id;
         this.tariffName = tariffName;
         this.operatorName = operatorName;
         this.monthPayRoll = monthPayRoll;
-        this.callprice = callprice;
         this.smsPrise = smsPrise;
-        this.parameters = parameters;
-        this.dateСonnectTariff = dateСonnectTariff;
+        this.costConnect = costConnect;
+        this.dateСonnectingTariff = dateСonnectingTariff;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -54,80 +51,68 @@ public abstract class AbstractTariff {
         this.operatorName = operatorName;
     }
 
-    public Integer getMonthPayRoll() {
+    public OptionalInt getMonthPayRoll() {
         return monthPayRoll;
     }
 
-    public void setMonthPayRoll(Integer monthPayRoll) {
+    public void setMonthPayRoll(OptionalInt monthPayRoll) {
         this.monthPayRoll = monthPayRoll;
     }
 
-    public CallPrice getCallprice() {
-        return callprice;
-    }
-
-    public void setCallprice(CallPrice callprice) {
-        this.callprice = callprice;
-    }
-
-    public Integer getSmsPrise() {
+    public long getSmsPrise() {
         return smsPrise;
     }
 
-    public void setSmsPrise(Integer smsPrise) {
+    public void setSmsPrise(int smsPrise) {
         this.smsPrise = smsPrise;
     }
 
-    public ParametersTariff getParameters() {
-        return parameters;
+    public int getCostConnect() {
+        return costConnect;
     }
 
-    public void setParameters(ParametersTariff parameters) {
-        this.parameters = parameters;
+    public void setCostConnect(int costConnect) {
+        this.costConnect = costConnect;
     }
 
-    public LocalDate getDateСonnectTariff() {
-        return dateСonnectTariff;
+    public LocalDate getDateСonnectingTariff() {
+        return dateСonnectingTariff;
     }
 
-    public void setDateСonnectTariff(LocalDate dateСonnectTariff) {
-        this.dateСonnectTariff = dateСonnectTariff;
+    public void setDateСonnectingTariff(LocalDate dateСonnectingTariff) {
+        this.dateСonnectingTariff = dateСonnectingTariff;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AbstractTariff tariff = (AbstractTariff) o;
-        return Objects.equals(id, tariff.id) && Objects.equals(tariffName, tariff.tariffName)
-                && operatorName == tariff.operatorName && Objects.equals(monthPayRoll, tariff.monthPayRoll)
-                && Objects.equals(callprice, tariff.callprice) && Objects.equals(smsPrise, tariff.smsPrise)
-                && Objects.equals(parameters, tariff.parameters)
-                && Objects.equals(dateСonnectTariff, tariff.dateСonnectTariff);
+        AbstractTariff that = (AbstractTariff) o;
+        return id == that.id && monthPayRoll == that.monthPayRoll && smsPrise == that.smsPrise
+                && costConnect == that.costConnect && Objects.equals(tariffName, that.tariffName)
+                && operatorName == that.operatorName && Objects.equals(dateСonnectingTariff, that.dateСonnectingTariff);
     }
 
     @Override
     public int hashCode() {
-        int hashCode = 1;
-        hashCode = 31 * hashCode + getId().hashCode() + getTariffName().hashCode() + getOperatorName().hashCode()
-                + getMonthPayRoll() + getCallprice().hashCode() + getSmsPrise()
-                + getParameters().hashCode() + getDateСonnectTariff().hashCode() * 2;
-        return hashCode;
+        long hashCode = 1;
+        hashCode = 31 * hashCode + getId()
+                + getTariffName().hashCode() + getOperatorName().hashCode() + getCostConnect()
+                + getMonthPayRoll().hashCode() + getSmsPrise() + getDateСonnectingTariff().hashCode() * 2L;
+        return (int) hashCode;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AbstractTariff by{" + AbstractTariff.class);
         sb.append(": id ='").append(id);
+        sb.append(": tariff name ='").append(tariffName);
         sb.append(", operator name =").append(operatorName);
         sb.append(", month pay roll=").append(monthPayRoll);
-        sb.append(", call price=").append(callprice);
         sb.append(", sms prise=").append(smsPrise);
-        sb.append(", parameters=").append(parameters);
-        sb.append(", date connect tariff=").append(dateСonnectTariff);
+        sb.append(", cost connect=").append(costConnect);
+        sb.append(", date connect tariff=").append(dateСonnectingTariff);
         sb.append('}');
         return sb.toString();
     }
-
-
 }

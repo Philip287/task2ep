@@ -23,6 +23,6 @@ public enum OperatorName {
                 return count;
             }
         }
-        return null; //todo ?
+        return null;
     }
 }
