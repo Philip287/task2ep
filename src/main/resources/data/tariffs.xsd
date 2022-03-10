@@ -1,101 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://www.suprun.com/tariffs"
+        targetNamespace="http://www.suprun.by/tariffs"
+        xmlns:tns="http://www.suprun.by/tariffs"
         elementFormDefault="qualified">
 
     <element name="tariffs">
         <complexType>
             <sequence>
-                <element ref="tns:tariff " maxOccurs="unbounded"/>
+                <element name="tariffs" type="tns:tariff " minOccurs="1" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
 
-    <element name="tariff" type="tns:abstractTariff" abstract="true"/>
-    <element name="mts-company-tariffs" type="tns:mts" substitutionGroup="tns:tariff"/>
-    <element name="life-company-tariffs" type="tns:life" substitutionGroup="tns:tariff"/>
-    <element name="tele2-company-tariffs" type="tns:tele2" substitutionGroup="tns:tariff"/>
+    <element name="tariff" type="tns:abstract-tariff" abstract="true"/>
+    <element name="internet-tariff" type="tns:internet" substitutionGroup="tns:tariff"/>
+    <element name="calling-tariff" type="tns:calling" substitutionGroup="tns:tariff"/>
 
-    <complexType name="abstractTariff">
+    <complexType name="abstract-tariff">
         <sequence>
             <element name="tariff-name" type="string"/>
-            <element name="size" type="integer"/>
-            <element name="month pay roll" type="integer"/>
-            <element name="sms prise" type="integer"/>
+            <element name="month-pay-roll" type="int"/>
+            <element name="sms-prise" type="int"/>
             <element name="date-connec-tariff" type="date" default="2022-01-01"/>
         </sequence>
-        <attribute name="call-price" use="required" type="tns:callPrice"/>
         <attribute name="id" use="required" type="tns:tariffId"/>
         <attribute name="operator-name" use="required" type="tns:operatorName"/>
-        <attribute name="parameters" use="required" type="tns:ParametersTariff"/>
     </complexType>
 
-    <complexType name="mts">
+    <complexType name="internet">
         <complexContent>
-            <extension base="tns:abstractTariff">
+            <extension base="tns:abstract-tariff">
                 <sequence>
-                    <element name="operator-name" type="string" default="MTS"/>
-                    <element name="cost-60-sec-collin" default="false"/>
-                    <element name="cost-12-sec-collin" default="true"/>
-                    <element name="cost-connect" type="integer" default="0"/>
+                    <element name="number-free-megabytes" type="int"/>
+                    <element name="cost-megabytes-after-free" type="int"/>
+                    <element name="cost-roaming-megabytes" type="int"/>
+                    <element name="number-free-megabytes-social-networks" type="int"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
 
-    <complexType name="life">
+    <complexType name="calling">
         <complexContent>
-            <extension base="tns:abstractTariff">
+            <extension base="tns:abstract-tariff">
                 <sequence>
-                    <element name="operator-name" type="string" default="life"/>
-                    <element name="cost-60-sec-collin" default="true"/>
-                    <element name="cost-12-sec-collin" default="false"/>
-                    <element name="cost-connect" type="integer" default="40"/>
+                    <element name="cost-in-network-calls" type="int"/>
+                    <element name="preferred-number" default="int"/>
+                    <element name="cost-off-network-calls" default="int"/>
+                    <element name="cost-landline-phone-calls" type="int"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
 
-    <complexType name="tele2">
-        <complexContent>
-            <extension base="tns:abstractTariff">
-                <sequence>
-                    <element name="operator-name" type="string" default="Tele2"/>
-                    <element name="cost-60-sec-collin" default="true"/>
-                    <element name="cost-12-sec-collin" default="false"/>
-                    <element name="cost-connect" type="integer" default="99"/>
-                </sequence>
-            </extension>
-        </complexContent>
-    </complexType>
-
-    <complexType name="ParametersTariff">
-        <complexContent>
-            <sequence>
-                <element name="preferred-number" type="integer"/>
-                <element name="cost-12-sec-collin" type="boolean"/>
-                <element name="cost-60-sec-collin" type="boolean"/>
-                <element name="cost-collin" type="integer"/>
-                <element name="cost-connect" type="integer"/>
-            </sequence>
-        </complexContent>
-    </complexType>
-
-    <complexType name="callPrice">
-        <element name="cost-inNetwork-calls" type="integer"/>
-        <element name="cost-off-network-calls" type="integer"/>
-        <element name="cost-landline-phone-calls" type="integer"/>
-    </complexType>
-
-    <simpleType name="smsPrise">
-        <restriction base="integer">
+    <simpleType name="sms-prise">
+        <restriction base="int">
             <minInclusive value="0"/>
             <maxInclusive value="999"/>
         </restriction>
     </simpleType>
 
-    <simpleType name="monthPayRoll">
-        <restriction base="integer">
+    <simpleType name="month-pay-roll">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="number-free-megabytes">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-megabytes-after-free">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="number-free-megabytes-social-networks">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-roaming-megabytes">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-in-network-calls">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="preferred-number">
+        <restriction base="int">
+            <minInclusive value="1"/>
+            <maxInclusive value="5"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-off-network-calls">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-landline-phone-calls">
+        <restriction base="int">
             <minInclusive value="0"/>
             <maxInclusive value="999"/>
         </restriction>
@@ -113,9 +135,8 @@
 
     <simpleType name="tariffId">
         <restriction base="ID">
-            <pattern value="\w{2}-\d{5}"/>
+            <pattern value="\d{12}"/>
         </restriction>
     </simpleType>
-
 
 </schema>
