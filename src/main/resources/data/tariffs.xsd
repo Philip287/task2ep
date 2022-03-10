@@ -7,7 +7,7 @@
     <element name="tariffs">
         <complexType>
             <sequence>
-                <element name="tariffs" type="tns:tariff " minOccurs="1" maxOccurs="unbounded"/>
+                <element ref="tns:tariff" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
@@ -135,7 +135,7 @@
 
     <simpleType name="tariffId">
         <restriction base="ID">
-            <pattern value="\d{12}"/>
+            <pattern value="\\d{5}-\\d{3}-\\d{4}"/>
         </restriction>
     </simpleType>
 
