@@ -21,7 +21,7 @@
             <element name="tariff-name" type="string"/>
             <element name="month-pay-roll" type="int"/>
             <element name="sms-prise" type="int"/>
-            <element name="date-connec-tariff" type="date" default="2022-01-01"/>
+            <element name="date-connecting-tariff" type="date" default="2022-01-01"/>
         </sequence>
         <attribute name="id" use="required" type="tns:tariffId"/>
         <attribute name="operator-name" use="required" type="tns:operatorName"/>
