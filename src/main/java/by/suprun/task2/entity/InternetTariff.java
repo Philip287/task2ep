@@ -15,8 +15,9 @@ public class InternetTariff extends AbstractTariff {
 
     public InternetTariff(long id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll,
                           int smsPrise, int costConnect, LocalDate dateСonnectingTariff, int numberFreeMegabytes,
-                          int costMegabytesAfterFree, int costRoamingMegabytes, int numberFreeMegabytesSocialNetworks) {
-        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff);
+                          int costMegabytesAfterFree, int costRoamingMegabytes, int numberFreeMegabytesSocialNetworks,
+                          Roaming roaming) {
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff, roaming);
         this.numberFreeMegabytes = numberFreeMegabytes;
         this.costMegabytesAfterFree = costMegabytesAfterFree;
         this.costRoamingMegabytes = costRoamingMegabytes;
@@ -125,6 +126,7 @@ public class InternetTariff extends AbstractTariff {
         sb.append(", cost megabytes after free=").append(costMegabytesAfterFree);
         sb.append(", cost roaming megabytes=").append(costRoamingMegabytes);
         sb.append(", number free megabytes social networks=").append(numberFreeMegabytesSocialNetworks);
+        sb.append(", roaming").append(getRoaming());
         sb.append('}');
         return sb.toString();
     }

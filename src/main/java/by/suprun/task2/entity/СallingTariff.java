@@ -15,8 +15,8 @@ public class СallingTariff extends AbstractTariff {
 
     public СallingTariff(long id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll, int smsPrise,
                          int costConnect, LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
-                         int costOffNetworkCalls, int costLandlinePhoneCalls) {
-        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff);
+                         int costOffNetworkCalls, int costLandlinePhoneCalls, Roaming roaming) {
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff, roaming);
         this.preferredNumber = preferredNumber;
         this.costInNetworkCalls = costInNetworkCalls;
         this.costOffNetworkCalls = costOffNetworkCalls;
@@ -124,6 +124,7 @@ public class СallingTariff extends AbstractTariff {
         sb.append(", cost in network calls=").append(costInNetworkCalls);
         sb.append(", cost off network calls=").append(costOffNetworkCalls);
         sb.append(", cost landline phone calls=").append(costLandlinePhoneCalls);
+        sb.append(", roaming").append(getRoaming());
         sb.append('}');
         return sb.toString();
     }

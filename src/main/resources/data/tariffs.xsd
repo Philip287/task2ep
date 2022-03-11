@@ -25,6 +25,7 @@
         </sequence>
         <attribute name="id" use="required" type="tns:tariffId"/>
         <attribute name="operator-name" use="required" type="tns:operatorName"/>
+        <attribute name="roaming" use="optional" type="string"/>
     </complexType>
 
     <complexType name="internet">
@@ -45,8 +46,8 @@
             <extension base="tns:abstract-tariff">
                 <sequence>
                     <element name="cost-in-network-calls" type="int"/>
-                    <element name="preferred-number" default="int"/>
-                    <element name="cost-off-network-calls" default="int"/>
+                    <element name="preferred-number" type="int"/>
+                    <element name="cost-off-network-calls" type="int"/>
                     <element name="cost-landline-phone-calls" type="int"/>
                 </sequence>
             </extension>
@@ -135,7 +136,7 @@
 
     <simpleType name="tariffId">
         <restriction base="ID">
-            <pattern value="\\d{5}-\\d{3}-\\d{4}"/>
+            <pattern value="\w{3}_\d{5}-\d{3}-\d{4}"/>
         </restriction>
     </simpleType>
 

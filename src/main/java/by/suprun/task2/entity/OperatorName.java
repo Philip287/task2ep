@@ -17,7 +17,7 @@ public enum OperatorName {
         return value;
     }
 
-    public static OperatorName getCountryFromString(String temp){
+    public static OperatorName getNameFromString(String temp){
         for(var count : OperatorName.values()){
             if(count.value.equalsIgnoreCase(temp)){
                 return count;

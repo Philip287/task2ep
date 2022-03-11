@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tariffs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://www.suprun.com/tariffs"
-         xsi:schemaLocation="http://www.kukyan.com/papers ../data/tariffs.xsd">
+         xmlns="http://www.suprun.by/tariffs"
+         xsi:schemaLocation="http://www.suprun.by/tariffs tariffs.xsd">
 
+    <calling-tariff id="MEG_37540-314-9479" operator-name="Megafon">
+        <tariff-name>light</tariff-name>
+        <month-pay-roll>32</month-pay-roll>
+        <sms-prise>3</sms-prise>
+        <date-connecting-tariff>2020-03-19</date-connecting-tariff>
+        <cost-in-network-calls>2</cost-in-network-calls>
+        <preferred-number>3</preferred-number>
+        <cost-off-network-calls>2</cost-off-network-calls>
+        <cost-landline-phone-calls>3</cost-landline-phone-calls>
+    </calling-tariff>
+
+    <internet-tariff id="MTS_37534-314-9471" operator-name="MTS">
+        <tariff-name>Standard</tariff-name>
+        <month-pay-roll>35</month-pay-roll>
+        <sms-prise>15</sms-prise>
+        <date-connecting-tariff>2020-03-01</date-connecting-tariff>
+        <number-free-megabytes>56000</number-free-megabytes>
+        <cost-megabytes-after-free>1</cost-megabytes-after-free>
+        <cost-roaming-megabytes>4</cost-roaming-megabytes>
+        <number-free-megabytes-social-networks>4000</number-free-megabytes-social-networks>
+    </internet-tariff>
 </tariffs>

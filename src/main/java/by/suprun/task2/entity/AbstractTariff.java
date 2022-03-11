@@ -12,12 +12,13 @@ public abstract class AbstractTariff {
     private int smsPrise;
     private int costConnect;
     private LocalDate dateСonnectingTariff;
+    private Roaming roaming;
 
     public AbstractTariff() {
     }
 
     public AbstractTariff(long id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll, int smsPrise,
-                          int costConnect, LocalDate dateСonnectingTariff) {
+                          int costConnect, LocalDate dateСonnectingTariff, Roaming roaming) {
         this.id = id;
         this.tariffName = tariffName;
         this.operatorName = operatorName;
@@ -25,6 +26,7 @@ public abstract class AbstractTariff {
         this.smsPrise = smsPrise;
         this.costConnect = costConnect;
         this.dateСonnectingTariff = dateСonnectingTariff;
+        this.roaming = roaming;
     }
 
     public long getId() {
@@ -83,6 +85,14 @@ public abstract class AbstractTariff {
         this.dateСonnectingTariff = dateСonnectingTariff;
     }
 
+    public Roaming getRoaming() {
+        return this.roaming;
+    }
+
+    public void setRoaming(final Roaming roaming) {
+        this.roaming = roaming;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,7 +100,8 @@ public abstract class AbstractTariff {
         AbstractTariff that = (AbstractTariff) o;
         return id == that.id && monthPayRoll == that.monthPayRoll && smsPrise == that.smsPrise
                 && costConnect == that.costConnect && Objects.equals(tariffName, that.tariffName)
-                && operatorName == that.operatorName && Objects.equals(dateСonnectingTariff, that.dateСonnectingTariff);
+                && operatorName == that.operatorName && Objects.equals(dateСonnectingTariff, that.dateСonnectingTariff)
+                && roaming == that.roaming;
     }
 
     @Override
@@ -98,7 +109,8 @@ public abstract class AbstractTariff {
         long hashCode = 1;
         hashCode = 31 * hashCode + getId()
                 + getTariffName().hashCode() + getOperatorName().hashCode() + getCostConnect()
-                + getMonthPayRoll().hashCode() + getSmsPrise() + getDateСonnectingTariff().hashCode() * 2L;
+                + getMonthPayRoll().hashCode() + getSmsPrise() + getDateСonnectingTariff().hashCode()
+                + getRoaming().hashCode() * 2L;
         return (int) hashCode;
     }
 
@@ -112,6 +124,7 @@ public abstract class AbstractTariff {
         sb.append(", sms prise=").append(smsPrise);
         sb.append(", cost connect=").append(costConnect);
         sb.append(", date connect tariff=").append(dateСonnectingTariff);
+        sb.append(", roaming=").append(roaming);
         sb.append('}');
         return sb.toString();
     }
