@@ -45,10 +45,10 @@
 
     </Appenders>
     <Loggers>
-        <Logger name="Log_Console" level="debug" additivity="false">
+        <Logger name="Log_Console" level="debug" additivity="true">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="Log_File" level="trace" additivity="false">
+        <Logger name="Log_File" level="trace" additivity="true">
             <AppenderRef ref="File1"/>
         </Logger>
         <Logger name="Zip_File" level="debug" additivity="true">

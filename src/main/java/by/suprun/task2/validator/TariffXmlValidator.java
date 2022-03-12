@@ -17,7 +17,7 @@ import java.net.URL;
 public class TariffXmlValidator {
 
     private static final Logger logger = LogManager.getLogger();
-    private static final String VALIDATION_SCHEME = "data/tariffs.xsd";
+    private static final String VALIDATION_SCHEME = "data\\tariffs.xsd";
 
     public static boolean validateXml(String pathToXml) {
         ClassLoader loader = TariffXmlValidator.class.getClassLoader();
@@ -26,7 +26,6 @@ public class TariffXmlValidator {
         URL xmlPath = loader.getResource(pathToXml);
         String path = new File(xmlPath.getFile()).getPath();
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-
         try {
             Schema schema = factory.newSchema(scheme);
             Validator validator = schema.newValidator();

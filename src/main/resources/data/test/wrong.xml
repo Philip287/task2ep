@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tariffs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.suprun.by/tariffs"
+         xsi:schemaLocation="http://www.suprun.by/tariffs tariffs.xsd">
+
+    <calling-tariff id="LIF_37534-314-9473" operator-name="life">
+        <tariff-name>standard</tariff-name>
+        <Wrong>dsfsdf</Wrong>
+        <date-connecting-tariff>03-13-2020</date-connecting-tariff>
+        <cost-in-network-calls>2</cost-in-network-calls>
+        <preferred-number>3</preferred-number>
+        <cost-off-network-calls>2</cost-off-network-calls>
+        <cost-landline-phone-calls>1</cost-landline-phone-calls>
+    </calling-tariff>
+
+    <internet-tariff id="Bil_37534-314-9471" operator-name="Bilayn">
+        <tariff-name>light</tariff-name>
+        <month-pay-roll>78</month-pay-roll>
+        <date-connecting-tariff>2020-03-08</date-connecting-tariff>
+        <number-free-megabytes>6000</number-free-megabytes>
+        <cost-megabytes-after-free>3</cost-megabytes-after-free>
+        <cost-roaming-megabytes>1</cost-roaming-megabytes>
+        <number-free-megabytes-social-networks>6000</number-free-megabytes-social-networks>
+    </internet-tariff>
+
+</tariffs>
