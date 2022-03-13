@@ -13,7 +13,7 @@ public class InternetTariff extends AbstractTariff {
         super();
     }
 
-    public InternetTariff(long id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll,
+    public InternetTariff(String id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll,
                           int smsPrise, int costConnect, LocalDate dateСonnectingTariff, int numberFreeMegabytes,
                           int costMegabytesAfterFree, int costRoamingMegabytes, int numberFreeMegabytesSocialNetworks,
                           Roaming roaming) {

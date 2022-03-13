@@ -14,17 +14,6 @@
         <cost-landline-phone-calls>1</cost-landline-phone-calls>
     </calling-tariff>
 
-    <calling-tariff id="LIF_37534-314-9473" operator-name="life">
-        <tariff-name>standard</tariff-name>
-        <month-pay-roll>25</month-pay-roll>
-        <sms-prise>3</sms-prise>
-        <date-connecting-tariff>2020-03-13</date-connecting-tariff>
-        <cost-in-network-calls>2</cost-in-network-calls>
-        <preferred-number>3</preferred-number>
-        <cost-off-network-calls>2</cost-off-network-calls>
-        <cost-landline-phone-calls>1</cost-landline-phone-calls>
-    </calling-tariff>
-
     <internet-tariff id="Bil_37534-314-9471" operator-name="Bilayn">
         <tariff-name>light</tariff-name>
         <month-pay-roll>78</month-pay-roll>

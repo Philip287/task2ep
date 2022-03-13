@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.OptionalInt;
 
 public abstract class AbstractTariff {
-    private long id;
+    private String id;
     private String tariffName;
     private OperatorName operatorName;
     private OptionalInt monthPayRoll;
@@ -17,7 +17,7 @@ public abstract class AbstractTariff {
     public AbstractTariff() {
     }
 
-    public AbstractTariff(long id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll, int smsPrise,
+    public AbstractTariff(String id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll, int smsPrise,
                           int costConnect, LocalDate dateСonnectingTariff, Roaming roaming) {
         this.id = id;
         this.tariffName = tariffName;
@@ -29,11 +29,11 @@ public abstract class AbstractTariff {
         this.roaming = roaming;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -107,7 +107,7 @@ public abstract class AbstractTariff {
     @Override
     public int hashCode() {
         long hashCode = 1;
-        hashCode = 31 * hashCode + getId()
+        hashCode = 31 * hashCode + getId().hashCode()
                 + getTariffName().hashCode() + getOperatorName().hashCode() + getCostConnect()
                 + getMonthPayRoll().hashCode() + getSmsPrise() + getDateСonnectingTariff().hashCode()
                 + getRoaming().hashCode() * 2L;

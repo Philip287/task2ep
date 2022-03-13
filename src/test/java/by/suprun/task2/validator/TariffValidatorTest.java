@@ -1,9 +1,9 @@
-package by.suprun.task2;
+package by.suprun.task2.validator;
 
 import by.suprun.task2.validator.TariffXmlValidator;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.*;
+import static org.testng.AssertJUnit.assertEquals;
 
 public class TariffValidatorTest {
     private static final String XML_FILE = "data\\test\\tariffs.xml";

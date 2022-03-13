@@ -13,7 +13,7 @@ public class СallingTariff extends AbstractTariff {
         super();
     }
 
-    public СallingTariff(long id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll, int smsPrise,
+    public СallingTariff(String id, String tariffName, OperatorName operatorName, OptionalInt monthPayRoll, int smsPrise,
                          int costConnect, LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
                          int costOffNetworkCalls, int costLandlinePhoneCalls, Roaming roaming) {
         super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff, roaming);
