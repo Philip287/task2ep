@@ -77,13 +77,13 @@ public class TariffHandler extends DefaultHandler {
         String data = new String(ch, start, length);
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
-                case TITLE -> currentTariff.setTitle(data);
-                case SIZE -> currentTariff.setSize(Integer.parseInt(data));
-                case MONTHLY -> currentTariff.setMonthly(Boolean.getBoolean(data));
+                case ID -> currentTariff.setId(data);
+                case SMS_PRISE -> currentTariff.setSmsPrise(Integer.parseInt(data));
+                case MONTH_PAY_ROL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
                 case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
-                case COLOURED -> currentTariff.setColoured(Boolean.getBoolean(data));
-                case TYPE -> ;
-                case SUBSCRIABLE -> {
+                case OPERATOR_NAME -> currentTariff.setOperatorName(OperatorName.getNameFromString(data));
+
+                case INTERNET_TARIFF -> {
                     if (currentTariff instanceof Paper) {
                         Paper temp = (Paper) currentTariff;
                         temp.setSubsriable(Boolean.getBoolean(data));
@@ -99,15 +99,6 @@ public class TariffHandler extends DefaultHandler {
                     } else if (currentTariff instanceof Magazine) {
                         Magazine temp = (Magazine) currentTariff;
                         temp.setPeriodicity(Periodicity.getPeriodicityFromString(data));
-                    }
-                }
-                case GLOSSY -> {
-                    if (currentTariff instanceof Booklet) {
-                        Booklet temp = (Booklet) currentTariff;
-                        temp.setGlossy(Boolean.getBoolean(data));
-                    } else if (currentTariff instanceof Magazine) {
-                        Magazine temp = (Magazine) currentTariff;
-                        temp.setGlossy(Boolean.getBoolean(data));
                     }
                 }
             }
