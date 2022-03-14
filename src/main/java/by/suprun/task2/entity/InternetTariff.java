@@ -24,6 +24,18 @@ public class InternetTariff extends AbstractTariff {
         this.numberFreeMegabytesSocialNetworks = numberFreeMegabytesSocialNetworks;
     }
 
+    public InternetTariff(String id, String tariffName, OperatorName operatorName,
+                          int monthPayRoll, int smsPrise, int costConnect,
+                          LocalDate dateСonnectingTariff, int numberFreeMegabytes,
+                          int costMegabytesAfterFree, int costRoamingMegabytes,
+                          int numberFreeMegabytesSocialNetworks) {
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff);
+        this.numberFreeMegabytes = numberFreeMegabytes;
+        this.costMegabytesAfterFree = costMegabytesAfterFree;
+        this.costRoamingMegabytes = costRoamingMegabytes;
+        this.numberFreeMegabytesSocialNetworks = numberFreeMegabytesSocialNetworks;
+    }
+
     public int getNumberFreeMegabytes() {
         return numberFreeMegabytes;
     }

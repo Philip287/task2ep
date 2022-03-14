@@ -1,7 +1,6 @@
 package by.suprun.task2.entity;
 
 import java.time.LocalDate;
-import java.util.OptionalInt;
 
 public class СallingTariff extends AbstractTariff {
     private int preferredNumber;
@@ -17,6 +16,17 @@ public class СallingTariff extends AbstractTariff {
                          int costConnect, LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
                          int costOffNetworkCalls, int costLandlinePhoneCalls, Roaming roaming) {
         super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff, roaming);
+        this.preferredNumber = preferredNumber;
+        this.costInNetworkCalls = costInNetworkCalls;
+        this.costOffNetworkCalls = costOffNetworkCalls;
+        this.costLandlinePhoneCalls = costLandlinePhoneCalls;
+    }
+
+    public СallingTariff(String id, String tariffName, OperatorName operatorName,
+                         int monthPayRoll, int smsPrise, int costConnect,
+                         LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
+                         int costOffNetworkCalls, int costLandlinePhoneCalls) {
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff);
         this.preferredNumber = preferredNumber;
         this.costInNetworkCalls = costInNetworkCalls;
         this.costOffNetworkCalls = costOffNetworkCalls;

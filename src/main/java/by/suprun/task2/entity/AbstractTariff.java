@@ -28,6 +28,17 @@ public abstract class AbstractTariff {
         this.dateСonnectingTariff = dateСonnectingTariff;
         this.roaming = roaming;
     }
+    public AbstractTariff(String id, String tariffName, OperatorName operatorName, int monthPayRoll, int smsPrise,
+                          int costConnect, LocalDate dateСonnectingTariff) {
+        this.id = id;
+        this.tariffName = tariffName;
+        this.operatorName = operatorName;
+        this.monthPayRoll = monthPayRoll;
+        this.smsPrise = smsPrise;
+        this.costConnect = costConnect;
+        this.dateСonnectingTariff = dateСonnectingTariff;
+    }
+
 
     public String getId() {
         return id;
@@ -109,8 +120,7 @@ public abstract class AbstractTariff {
         long hashCode = 1;
         hashCode = 31 * hashCode + getId().hashCode()
                 + getTariffName().hashCode() + getOperatorName().hashCode() + getCostConnect()
-                + getMonthPayRoll() + getSmsPrise() + getDateСonnectingTariff().hashCode()
-                + getRoaming().hashCode() * 2L;
+                + getMonthPayRoll() + getSmsPrise() + getDateСonnectingTariff().hashCode() * 2L;
         return (int) hashCode;
     }
 
