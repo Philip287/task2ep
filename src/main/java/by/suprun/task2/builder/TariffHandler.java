@@ -59,7 +59,6 @@ public class TariffHandler extends DefaultHandler {
         }
     }
 
-
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         String callTag = TariffXmlTag.CALLING_TARIFF.getValue();
@@ -71,37 +70,54 @@ public class TariffHandler extends DefaultHandler {
         }
     }
 
-
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         String data = new String(ch, start, length);
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
                 case ID -> currentTariff.setId(data);
-                case SMS_PRISE -> currentTariff.setSmsPrise(Integer.parseInt(data));
-                case MONTH_PAY_ROL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
-                case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
+                case TARIFF_NAME -> currentTariff.setTariffName(data);
                 case OPERATOR_NAME -> currentTariff.setOperatorName(OperatorName.getNameFromString(data));
+                case MONTH_PAY_ROL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
+                case SMS_PRISE -> currentTariff.setSmsPrise(Integer.parseInt(data));
+                case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
+                case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
+                case COST_IN_NETWORK_CALLS -> {
+                    СallingTariff temp = (СallingTariff) currentTariff;
+                    temp.setCostInNetworkCalls(Integer.parseInt(data));
+                }
+                case PREFERRED_NUMBER -> {
+                    СallingTariff temp = (СallingTariff) currentTariff;
+                    temp.setPreferredNumber(Integer.parseInt(data));
+                }
+                case COST_OFF_NETWORK_CALLS -> {
+                    СallingTariff temp = (СallingTariff) currentTariff;
+                    temp.setCostOffNetworkCalls(Integer.parseInt(data));
+                }
+                case COST_LANDLINE_PHONE_CALLS -> {
+                    СallingTariff temp = (СallingTariff) currentTariff;
+                    temp.setCostLandlinePhoneCalls(Integer.parseInt(data));
+                }
+                case NUMBER_FREE_MEGABYTES -> {
+                    InternetTariff temp = (InternetTariff) currentTariff;
+                    temp.setNumberFreeMegabytes(Integer.parseInt(data));
+                }
+                case COST_MEGABYTES_AFTER_FREE -> {
+                    InternetTariff temp = (InternetTariff) currentTariff;
+                    temp.setCostMegabytesAfterFree(Integer.parseInt(data));
+                }
+                case COST_ROAMING_MEGABYTES -> {
+                    InternetTariff temp = (InternetTariff) currentTariff;
+                    temp.setCostRoamingMegabytes(Integer.parseInt(data));
 
-                case INTERNET_TARIFF -> {
-                    if (currentTariff instanceof Paper) {
-                        Paper temp = (Paper) currentTariff;
-                        temp.setSubsriable(Boolean.getBoolean(data));
-                    } else if (currentTariff instanceof Magazine) {
-                        Magazine temp = (Magazine) currentTariff;
-                        temp.setSubsriable(Boolean.getBoolean(data));
-                    }
                 }
-                case PERIODICITY -> {
-                    if (currentTariff instanceof Paper) {
-                        Paper temp = (Paper) currentTariff;
-                        temp.setPeriodicity(Periodicity.getPeriodicityFromString(data));
-                    } else if (currentTariff instanceof Magazine) {
-                        Magazine temp = (Magazine) currentTariff;
-                        temp.setPeriodicity(Periodicity.getPeriodicityFromString(data));
-                    }
+                case NUMBER_FREE_MEGABYTES_SOCIAL_NETWORKS -> {
+                    InternetTariff temp = (InternetTariff) currentTariff;
+                    temp.setNumberFreeMegabytesSocialNetworks(Integer.parseInt(data));
                 }
+
             }
+
         }
         currentXmlTag = null;
     }

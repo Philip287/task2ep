@@ -21,6 +21,7 @@
             <element name="tariff-name" type="string"/>
             <element name="month-pay-roll" type="int"/>
             <element name="sms-prise" type="int"/>
+            <element name="cost-connect" type="int"/>
             <element name="date-connecting-tariff" type="date" default="2022-01-01"/>
         </sequence>
         <attribute name="id" use="required" type="tns:tariffId"/>
@@ -69,6 +70,13 @@
     </simpleType>
 
     <simpleType name="number-free-megabytes">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-connect">
         <restriction base="int">
             <minInclusive value="0"/>
             <maxInclusive value="999"/>

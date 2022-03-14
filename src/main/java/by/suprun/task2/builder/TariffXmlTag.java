@@ -11,6 +11,7 @@ public enum TariffXmlTag {
     MONTH_PAY_ROL("month-pay-roll"),
     SMS_PRISE("sms-pris"),
     DATE_CONNECTING_TARIFF("date-connecting-tariff"),
+    COST_CONNECT("cost-connect"),
     COST_IN_NETWORK_CALLS("cost-in-network-calls"),
     PREFERRED_NUMBER("preferred-number"),
     COST_OFF_NETWORK_CALLS("cost-off-network-calls"),
