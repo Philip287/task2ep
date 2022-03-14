@@ -7,6 +7,7 @@
         <tariff-name>light</tariff-name>
         <month-pay-roll>32</month-pay-roll>
         <sms-prise>3</sms-prise>
+        <cost-connect>0</cost-connect>
         <date-connecting-tariff>2020-03-19</date-connecting-tariff>
         <cost-in-network-calls>2</cost-in-network-calls>
         <preferred-number>3</preferred-number>
@@ -18,6 +19,7 @@
         <tariff-name>Standard</tariff-name>
         <month-pay-roll>35</month-pay-roll>
         <sms-prise>15</sms-prise>
+        <cost-connect>0</cost-connect>
         <date-connecting-tariff>2020-03-01</date-connecting-tariff>
         <number-free-megabytes>56000</number-free-megabytes>
         <cost-megabytes-after-free>1</cost-megabytes-after-free>

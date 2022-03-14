@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.suprun.by/tariffs"
+        xmlns:tns="http://www.suprun.by/tariffs"
+        elementFormDefault="qualified">
+
+    <element name="tariffs">
+        <complexType>
+            <sequence>
+                <element ref="tns:tariff" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="tariff" type="tns:abstract-tariff" abstract="true"/>
+    <element name="internet-tariff" type="tns:internet" substitutionGroup="tns:tariff"/>
+    <element name="calling-tariff" type="tns:calling" substitutionGroup="tns:tariff"/>
+
+    <complexType name="abstract-tariff">
+        <sequence>
+            <element name="tariff-name" type="string"/>
+            <element name="month-pay-roll" type="int"/>
+            <element name="sms-prise" type="int"/>
+            <element name="cost-connect" type="int"/>
+            <element name="date-connecting-tariff" type="date" default="2022-01-01"/>
+        </sequence>
+        <attribute name="id" use="required" type="tns:tariffId"/>
+        <attribute name="operator-name" use="required" type="tns:operatorName"/>
+        <attribute name="roaming" use="optional" type="string"/>
+    </complexType>
+
+    <complexType name="internet">
+        <complexContent>
+            <extension base="tns:abstract-tariff">
+                <sequence>
+                    <element name="number-free-megabytes" type="int"/>
+                    <element name="cost-megabytes-after-free" type="int"/>
+                    <element name="cost-roaming-megabytes" type="int"/>
+                    <element name="number-free-megabytes-social-networks" type="int"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="calling">
+        <complexContent>
+            <extension base="tns:abstract-tariff">
+                <sequence>
+                    <element name="cost-in-network-calls" type="int"/>
+                    <element name="preferred-number" type="int"/>
+                    <element name="cost-off-network-calls" type="int"/>
+                    <element name="cost-landline-phone-calls" type="int"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="sms-prise">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="month-pay-roll">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="number-free-megabytes">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-connect">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-megabytes-after-free">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="number-free-megabytes-social-networks">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-roaming-megabytes">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-in-network-calls">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="preferred-number">
+        <restriction base="int">
+            <minInclusive value="1"/>
+            <maxInclusive value="5"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-off-network-calls">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="cost-landline-phone-calls">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="operatorName">
+        <restriction base="string">
+            <enumeration value="life"/>
+            <enumeration value="MTS"/>
+            <enumeration value="Tele 2"/>
+            <enumeration value="Bilayn"/>
+            <enumeration value="Megafon"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="tariffId">
+        <restriction base="ID">
+            <pattern value="\w{3}_\d{5}-\d{3}-\d{4}"/>
+        </restriction>
+    </simpleType>
+
+</schema>
