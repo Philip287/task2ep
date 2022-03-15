@@ -1,7 +1,6 @@
 package by.suprun.task2.entity;
 
 import java.time.LocalDate;
-import java.util.OptionalInt;
 
 public class InternetTariff extends AbstractTariff {
     private int numberFreeMegabytes;
@@ -34,6 +33,15 @@ public class InternetTariff extends AbstractTariff {
         this.costMegabytesAfterFree = costMegabytesAfterFree;
         this.costRoamingMegabytes = costRoamingMegabytes;
         this.numberFreeMegabytesSocialNetworks = numberFreeMegabytesSocialNetworks;
+    }
+
+    public static InternetTariff setNewInternetTariff(AbstractTariff tariff, int numberFreeMegabytes,
+                                                      int costMegabytesAfterFree, int costRoamingMegabytes,
+                                                      int numberFreeMegabytesSocialNetworks) {
+
+        return new InternetTariff(tariff.getId(), tariff.getTariffName(), tariff.getOperatorName(), tariff.getMonthPayRoll(),
+                tariff.getSmsPrise(), tariff.getCostConnect(), tariff.getDateСonnectingTariff(),
+                numberFreeMegabytes, costMegabytesAfterFree, costRoamingMegabytes, numberFreeMegabytesSocialNetworks);
     }
 
     public int getNumberFreeMegabytes() {

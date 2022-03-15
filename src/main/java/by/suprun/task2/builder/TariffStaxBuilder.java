@@ -3,7 +3,7 @@ package by.suprun.task2.builder;
 import by.suprun.task2.entity.AbstractTariff;
 import by.suprun.task2.entity.InternetTariff;
 import by.suprun.task2.entity.OperatorName;
-import by.suprun.task2.entity.СallingTariff;
+import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.exception.TariffException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +59,7 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
     private AbstractTariff buildTariff(XMLStreamReader reader) throws XMLStreamException {
         String temp = reader.getLocalName();
         AbstractTariff currentTariff = temp.equals(TariffXmlTag.INTERNET_TARIFF.getValue()) ? new InternetTariff()
-                : new СallingTariff();
+                : new CallingTariff();
 
         currentTariff.setId(reader.getAttributeValue(null, TariffXmlTag.ID.getValue()));
 
@@ -101,19 +101,19 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
             case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
             case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
             case COST_IN_NETWORK_CALLS -> {
-                СallingTariff temp = (СallingTariff) currentTariff;
+                CallingTariff temp = (CallingTariff) currentTariff;
                 temp.setCostInNetworkCalls(Integer.parseInt(data));
             }
             case PREFERRED_NUMBER -> {
-                СallingTariff temp = (СallingTariff) currentTariff;
+                CallingTariff temp = (CallingTariff) currentTariff;
                 temp.setPreferredNumber(Integer.parseInt(data));
             }
             case COST_OFF_NETWORK_CALLS -> {
-                СallingTariff temp = (СallingTariff) currentTariff;
+                CallingTariff temp = (CallingTariff) currentTariff;
                 temp.setCostOffNetworkCalls(Integer.parseInt(data));
             }
             case COST_LANDLINE_PHONE_CALLS -> {
-                СallingTariff temp = (СallingTariff) currentTariff;
+                CallingTariff temp = (CallingTariff) currentTariff;
                 temp.setCostLandlinePhoneCalls(Integer.parseInt(data));
             }
             case NUMBER_FREE_MEGABYTES -> {

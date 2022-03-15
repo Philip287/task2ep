@@ -2,17 +2,17 @@ package by.suprun.task2.entity;
 
 import java.time.LocalDate;
 
-public class СallingTariff extends AbstractTariff {
+public class CallingTariff extends AbstractTariff {
     private int preferredNumber;
     private int costInNetworkCalls;
     private int costOffNetworkCalls;
     private int costLandlinePhoneCalls;
 
-    public СallingTariff() {
+    public CallingTariff() {
         super();
     }
 
-    public СallingTariff(String id, String tariffName, OperatorName operatorName, int monthPayRoll, int smsPrise,
+    public CallingTariff(String id, String tariffName, OperatorName operatorName, int monthPayRoll, int smsPrise,
                          int costConnect, LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
                          int costOffNetworkCalls, int costLandlinePhoneCalls, Roaming roaming) {
         super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff, roaming);
@@ -22,7 +22,7 @@ public class СallingTariff extends AbstractTariff {
         this.costLandlinePhoneCalls = costLandlinePhoneCalls;
     }
 
-    public СallingTariff(String id, String tariffName, OperatorName operatorName,
+    public CallingTariff(String id, String tariffName, OperatorName operatorName,
                          int monthPayRoll, int smsPrise, int costConnect,
                          LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
                          int costOffNetworkCalls, int costLandlinePhoneCalls) {
@@ -31,6 +31,14 @@ public class СallingTariff extends AbstractTariff {
         this.costInNetworkCalls = costInNetworkCalls;
         this.costOffNetworkCalls = costOffNetworkCalls;
         this.costLandlinePhoneCalls = costLandlinePhoneCalls;
+    }
+
+    public static CallingTariff setNewCallingTariff(AbstractTariff tariff, int preferredNumber, int costInNetworkCalls,
+                                                    int costOffNetworkCalls, int costLandlinePhoneCalls) {
+
+        return new CallingTariff(tariff.getId(), tariff.getTariffName(), tariff.getOperatorName(), tariff.getMonthPayRoll(),
+                tariff.getSmsPrise(), tariff.getCostConnect(), tariff.getDateСonnectingTariff(),
+                preferredNumber, costInNetworkCalls, costOffNetworkCalls, costLandlinePhoneCalls);
     }
 
     public int getPreferredNumber() {
@@ -76,7 +84,7 @@ public class СallingTariff extends AbstractTariff {
         if (!super.equals(obj)) {
             return false;
         }
-        СallingTariff that = (СallingTariff) obj;
+        CallingTariff that = (CallingTariff) obj;
         if (getId() != that.getId()) {
             return false;
         }

@@ -72,7 +72,7 @@ public abstract class AbstractTariff {
         this.monthPayRoll = monthPayRoll;
     }
 
-    public long getSmsPrise() {
+    public int getSmsPrise() {
         return smsPrise;
     }
 

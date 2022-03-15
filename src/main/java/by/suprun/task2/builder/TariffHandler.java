@@ -3,7 +3,7 @@ package by.suprun.task2.builder;
 import by.suprun.task2.entity.AbstractTariff;
 import by.suprun.task2.entity.InternetTariff;
 import by.suprun.task2.entity.OperatorName;
-import by.suprun.task2.entity.СallingTariff;
+import by.suprun.task2.entity.CallingTariff;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
@@ -44,7 +44,7 @@ public class TariffHandler extends DefaultHandler {
                 qName.equals(TariffXmlTag.INTERNET_TARIFF.getValue())) {
 
             if (qName.equals(TariffXmlTag.CALLING_TARIFF.getValue())) {
-                currentTariff = new СallingTariff();
+                currentTariff = new CallingTariff();
             } else {
                 currentTariff = new InternetTariff();
             }
@@ -83,19 +83,19 @@ public class TariffHandler extends DefaultHandler {
                 case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
                 case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
                 case COST_IN_NETWORK_CALLS -> {
-                    СallingTariff temp = (СallingTariff) currentTariff;
+                    CallingTariff temp = (CallingTariff) currentTariff;
                     temp.setCostInNetworkCalls(Integer.parseInt(data));
                 }
                 case PREFERRED_NUMBER -> {
-                    СallingTariff temp = (СallingTariff) currentTariff;
+                    CallingTariff temp = (CallingTariff) currentTariff;
                     temp.setPreferredNumber(Integer.parseInt(data));
                 }
                 case COST_OFF_NETWORK_CALLS -> {
-                    СallingTariff temp = (СallingTariff) currentTariff;
+                    CallingTariff temp = (CallingTariff) currentTariff;
                     temp.setCostOffNetworkCalls(Integer.parseInt(data));
                 }
                 case COST_LANDLINE_PHONE_CALLS -> {
-                    СallingTariff temp = (СallingTariff) currentTariff;
+                    CallingTariff temp = (CallingTariff) currentTariff;
                     temp.setCostLandlinePhoneCalls(Integer.parseInt(data));
                 }
                 case NUMBER_FREE_MEGABYTES -> {

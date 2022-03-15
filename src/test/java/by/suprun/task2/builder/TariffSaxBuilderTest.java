@@ -3,7 +3,7 @@ package by.suprun.task2.builder;
 import by.suprun.task2.entity.AbstractTariff;
 import by.suprun.task2.entity.InternetTariff;
 import by.suprun.task2.entity.OperatorName;
-import by.suprun.task2.entity.СallingTariff;
+import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.exception.TariffException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -23,7 +23,7 @@ public class TariffSaxBuilderTest {
     public void setUp(){
         expected = new HashSet<>();
 
-        expected.add(new СallingTariff("MEG_37540-314-9479",
+        expected.add(new CallingTariff("MEG_37540-314-9479",
                 "light",
                 OperatorName.MEGAFON,
                 3,
