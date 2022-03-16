@@ -1,9 +1,9 @@
 package by.suprun.task2.builder;
 
 import by.suprun.task2.entity.AbstractTariff;
+import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.entity.InternetTariff;
 import by.suprun.task2.entity.OperatorName;
-import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.exception.TariffException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +12,6 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;

@@ -30,7 +30,7 @@ public class TariffHandler extends DefaultHandler {
 
     public TariffHandler() {
         tariffs = new HashSet<>();
-        xmlTags = EnumSet.range(TariffXmlTag.TARIFF_NAME, TariffXmlTag.DATE_CONNECTING_TARIFF);
+        xmlTags = EnumSet.range(TariffXmlTag.TARIFF_NAME, TariffXmlTag.NUMBER_FREE_MEGABYTES_SOCIAL_NETWORKS);
     }
 
     public Set<AbstractTariff> getTariffs() {
@@ -39,7 +39,7 @@ public class TariffHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        logger.info("Method endDocument() by TariffHandler is start.");
+        logger.info("Method startDocument() by TariffHandler is start.");
         if (qName.equals(TariffXmlTag.INTERNET_TARIFF.getValue()) ||
                 qName.equals(TariffXmlTag.CALLING_TARIFF.getValue())) {
             currentTariff = qName.equals(TariffXmlTag.CALLING_TARIFF.getValue()) ? new CallingTariff() : new InternetTariff();
@@ -69,6 +69,7 @@ public class TariffHandler extends DefaultHandler {
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         String data = new String(ch, start, length);
+
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
                 case ID -> currentTariff.setId(data);
@@ -79,37 +80,53 @@ public class TariffHandler extends DefaultHandler {
                 case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
                 case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
                 case COST_IN_NETWORK_CALLS -> {
-                    CallingTariff temp = (CallingTariff) currentTariff;
-                    temp.setCostInNetworkCalls(Integer.parseInt(data));
+                    if (currentTariff instanceof CallingTariff) {
+                        CallingTariff temp = (CallingTariff) currentTariff;
+                        temp.setCostInNetworkCalls(Integer.parseInt(data));
+                    }
                 }
                 case PREFERRED_NUMBER -> {
-                    CallingTariff temp = (CallingTariff) currentTariff;
-                    temp.setPreferredNumber(Integer.parseInt(data));
+                    if (currentTariff instanceof CallingTariff) {
+                        CallingTariff temp = (CallingTariff) currentTariff;
+                        temp.setPreferredNumber(Integer.parseInt(data));
+                    }
                 }
                 case COST_OFF_NETWORK_CALLS -> {
-                    CallingTariff temp = (CallingTariff) currentTariff;
-                    temp.setCostOffNetworkCalls(Integer.parseInt(data));
+                    if (currentTariff instanceof CallingTariff) {
+                        CallingTariff temp = (CallingTariff) currentTariff;
+                        temp.setCostOffNetworkCalls(Integer.parseInt(data));
+                    }
                 }
                 case COST_LANDLINE_PHONE_CALLS -> {
-                    CallingTariff temp = (CallingTariff) currentTariff;
-                    temp.setCostLandlinePhoneCalls(Integer.parseInt(data));
+                    if (currentTariff instanceof CallingTariff) {
+                        CallingTariff temp = (CallingTariff) currentTariff;
+                        temp.setCostLandlinePhoneCalls(Integer.parseInt(data));
+                    }
                 }
                 case NUMBER_FREE_MEGABYTES -> {
-                    InternetTariff temp = (InternetTariff) currentTariff;
-                    temp.setNumberFreeMegabytes(Integer.parseInt(data));
+                    if (currentTariff instanceof InternetTariff) {
+                        InternetTariff temp = (InternetTariff) currentTariff;
+                        temp.setNumberFreeMegabytes(Integer.parseInt(data));
+                    }
                 }
                 case COST_MEGABYTES_AFTER_FREE -> {
-                    InternetTariff temp = (InternetTariff) currentTariff;
-                    temp.setCostMegabytesAfterFree(Integer.parseInt(data));
+                    if (currentTariff instanceof InternetTariff) {
+                        InternetTariff temp = (InternetTariff) currentTariff;
+                        temp.setCostMegabytesAfterFree(Integer.parseInt(data));
+                    }
                 }
                 case COST_ROAMING_MEGABYTES -> {
-                    InternetTariff temp = (InternetTariff) currentTariff;
-                    temp.setCostRoamingMegabytes(Integer.parseInt(data));
+                    if (currentTariff instanceof InternetTariff) {
+                        InternetTariff temp = (InternetTariff) currentTariff;
+                        temp.setCostRoamingMegabytes(Integer.parseInt(data));
+                    }
 
                 }
                 case NUMBER_FREE_MEGABYTES_SOCIAL_NETWORKS -> {
-                    InternetTariff temp = (InternetTariff) currentTariff;
-                    temp.setNumberFreeMegabytesSocialNetworks(Integer.parseInt(data));
+                    if (currentTariff instanceof InternetTariff) {
+                        InternetTariff temp = (InternetTariff) currentTariff;
+                        temp.setNumberFreeMegabytesSocialNetworks(Integer.parseInt(data));
+                    }
                 }
 
             }

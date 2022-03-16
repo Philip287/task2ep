@@ -1,6 +1,5 @@
 package by.suprun.task2.builder;
 
-import by.suprun.task2.exception.TariffException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -16,14 +15,14 @@ public class TariffSaxBuilder extends AbstractTariffBuilder {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public void buildTariffs(String path) throws TariffException {
+    public void buildTariffs(String path) {
         try {
             ClassLoader loader = getClass().getClassLoader();
             URL resource = loader.getResource(path);
 
             SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
-            XMLReader reader = parser.getXMLReader();
+            SAXParser saxParser = factory.newSAXParser();
+            XMLReader reader = saxParser.getXMLReader();
             TariffHandler handler = new TariffHandler();
 
             reader.setContentHandler(handler);
@@ -32,7 +31,6 @@ public class TariffSaxBuilder extends AbstractTariffBuilder {
             tariffs.addAll(handler.getTariffs());
         } catch (ParserConfigurationException | SAXException | IOException e) {
             logger.error("sax error", e);
-            throw new TariffException("sax error", e);
         }
     }
 }
