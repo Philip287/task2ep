@@ -12,8 +12,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.testng.Assert.fail;
 import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.fail;
 
 public class TariffDomBuilderTest {
 
@@ -60,6 +60,6 @@ public class TariffDomBuilderTest {
         }catch (TariffException e){
             fail(e.getMessage());
         }
-        assertEquals(expected, actual);
+        assertEquals(actual, expected);
     }
 }
