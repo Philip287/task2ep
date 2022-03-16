@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class TariffValidatorTest {
-    private static final String XML_FILE = "data\\test\\tariffs.xml";
-    private static final String XML_FILE_WRONG = "data\\test\\wrong.xml";
+    private static final String XML_FILE = "data/test/tariffs.xml";
+    private static final String XML_FILE_WRONG = "data/test/wrong.xml";
 
     @Test
     public void testIsValidXML() {

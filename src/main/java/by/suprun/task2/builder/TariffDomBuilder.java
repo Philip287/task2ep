@@ -10,7 +10,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -40,48 +39,52 @@ public class TariffDomBuilder extends AbstractTariffBuilder {
         try {
             ClassLoader loader = getClass().getClassLoader();
             URL resource = loader.getResource(path);
-            InputSource is;
+
             doc = documentBuilder.parse(resource.getFile());
             Element root = doc.getDocumentElement();
-            NodeList tariffList = root.getElementsByTagName("tariffs");
-            for (int i = 0; i < tariffList.getLength(); i++) {
-                Element e1 = (Element) tariffList.item(i);
-                AbstractTariff tariff = buildTariff(e1, TariffXmlTag.valueOf("tariffs"));
-                tariffs.add(tariff);
-            }
+            createTariffs(root, TariffXmlTag.CALLING_TARIFF);
+            createTariffs(root, TariffXmlTag.INTERNET_TARIFF);
         } catch (IOException | SAXException e) {
             logger.error("Error while reading", e);
         }
     }
 
+    private void createTariffs(Element root, TariffXmlTag tariffXmlTag) {
+        NodeList tariffList = root.getElementsByTagName(tariffXmlTag.getValue());
+        for (int i = 0; i < tariffList.getLength(); i++) {
+            Element e1 = (Element) tariffList.item(i);
+            AbstractTariff tariff = buildTariff(e1, tariffXmlTag);
+            tariffs.add(tariff);
+        }
+    }
+
 
     private AbstractTariff buildTariff(Element element, TariffXmlTag tariffXmlTag) {
-        AbstractTariff tariff = new InternetTariff();
+        AbstractTariff tariff = new CallingTariff();
 
-        String id = element.getAttribute(TariffXmlTag.ID.toString());
-        String tariffName = element.getAttribute(TariffXmlTag.TARIFF_NAME.toString());
-        OperatorName operatorName = OperatorName.valueOf(getElementTextContent(element, tariffXmlTag.OPERATOR_NAME
-                .getValue().toUpperCase()));
-        int monthPayRoll = Integer.parseInt(element.getAttribute(TariffXmlTag.MONTH_PAY_ROL.getValue()));
-        int smsPrise = Integer.parseInt(element.getAttribute(TariffXmlTag.SMS_PRISE.getValue()));
-        int costConnect = Integer.parseInt(element.getAttribute(TariffXmlTag.COST_CONNECT.getValue()));
-        LocalDate dateСonnectingTariff = LocalDate.parse(element.getAttribute(TariffXmlTag.DATE_CONNECTING_TARIFF
+        String id = element.getAttribute(TariffXmlTag.ID.getValue());
+        String tariffName = getElementTextContent(element, TariffXmlTag.TARIFF_NAME.getValue());
+        OperatorName operatorName = OperatorName.getNameFromString(element.getAttribute(tariffXmlTag.OPERATOR_NAME.getValue()));
+        int monthPayRoll = Integer.parseInt(getElementTextContent(element, TariffXmlTag.MONTH_PAY_ROLL.getValue()));
+        int smsPrise = Integer.parseInt(getElementTextContent(element, TariffXmlTag.SMS_PRISE.getValue()));
+        int costConnect = Integer.parseInt(getElementTextContent(element, TariffXmlTag.COST_CONNECT.getValue()));
+        LocalDate dateСonnectingTariff = LocalDate.parse(getElementTextContent(element, TariffXmlTag.DATE_CONNECTING_TARIFF
                 .getValue()));
         switch (tariffXmlTag) {
             case INTERNET_TARIFF -> {
-                int numberFreeMegabytes = Integer.parseInt(element.getAttribute(TariffXmlTag.NUMBER_FREE_MEGABYTES.getValue()));
-                int costMegabytesAfterFree = Integer.parseInt(element.getAttribute(TariffXmlTag.COST_MEGABYTES_AFTER_FREE.getValue()));
-                int costRoamingMegabytes = Integer.parseInt(element.getAttribute(TariffXmlTag.COST_ROAMING_MEGABYTES.getValue()));
-                int numberFreeMegabytesSocialNetworks = Integer.parseInt(element.getAttribute(TariffXmlTag.NUMBER_FREE_MEGABYTES_SOCIAL_NETWORKS.getValue()));
+                int numberFreeMegabytes = Integer.parseInt(getElementTextContent(element, TariffXmlTag.NUMBER_FREE_MEGABYTES.getValue()));
+                int costMegabytesAfterFree = Integer.parseInt(getElementTextContent(element, TariffXmlTag.COST_MEGABYTES_AFTER_FREE.getValue()));
+                int costRoamingMegabytes = Integer.parseInt(getElementTextContent(element, TariffXmlTag.COST_ROAMING_MEGABYTES.getValue()));
+                int numberFreeMegabytesSocialNetworks = Integer.parseInt(getElementTextContent(element, TariffXmlTag.NUMBER_FREE_MEGABYTES_SOCIAL_NETWORKS.getValue()));
                 InternetTariff temp = InternetTariff.setNewInternetTariff(tariff, numberFreeMegabytes, costMegabytesAfterFree,
                         costRoamingMegabytes, numberFreeMegabytesSocialNetworks);
                 tariff = temp;
             }
             case CALLING_TARIFF -> {
-                int preferredNumber = Integer.parseInt(element.getAttribute(TariffXmlTag.PREFERRED_NUMBER.getValue()));
-                int costInNetworkCalls = Integer.parseInt(element.getAttribute(TariffXmlTag.COST_IN_NETWORK_CALLS.getValue()));
-                int costOffNetworkCalls = Integer.parseInt(element.getAttribute(TariffXmlTag.COST_OFF_NETWORK_CALLS.getValue()));
-                int costLandlinePhoneCalls = Integer.parseInt(element.getAttribute(TariffXmlTag.COST_LANDLINE_PHONE_CALLS.getValue()));
+                int preferredNumber = Integer.parseInt(getElementTextContent(element, tariffXmlTag.PREFERRED_NUMBER.getValue()));
+                int costInNetworkCalls = Integer.parseInt(getElementTextContent(element, tariffXmlTag.COST_IN_NETWORK_CALLS.getValue()));
+                int costOffNetworkCalls = Integer.parseInt(getElementTextContent(element, tariffXmlTag.COST_OFF_NETWORK_CALLS.getValue()));
+                int costLandlinePhoneCalls = Integer.parseInt(getElementTextContent(element, tariffXmlTag.COST_LANDLINE_PHONE_CALLS.getValue()));
                 CallingTariff temp = CallingTariff.setNewCallingTariff(tariff, preferredNumber, costInNetworkCalls,
                         costOffNetworkCalls, costLandlinePhoneCalls);
                 tariff = temp;

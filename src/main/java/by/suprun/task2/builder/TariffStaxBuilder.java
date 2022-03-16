@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Locale;
 
 public class TariffStaxBuilder extends AbstractTariffBuilder {
     private static final Logger logger = LogManager.getLogger();
@@ -36,7 +37,6 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
         XMLStreamReader reader;
         String name;
 
-        File file;
         try (FileInputStream inputStream = new FileInputStream(resource.getFile())) {
             reader = inputFactory.createXMLStreamReader(inputStream);
             while (reader.hasNext()) {
@@ -63,16 +63,15 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
 
         currentTariff.setId(reader.getAttributeValue(null, TariffXmlTag.ID.getValue()));
 
-        OperatorName operatorName = OperatorName.valueOf(null, TariffXmlTag.OPERATOR_NAME.getValue());
+        OperatorName operatorName = OperatorName.valueOf(reader.getAttributeValue(null, TariffXmlTag.OPERATOR_NAME.getValue()).toUpperCase(Locale.ROOT));
         if (operatorName == null) {
             currentTariff.setOperatorName(OperatorName.valueOf("MTS"));
         } else {
-            currentTariff.setTariffName(operatorName.toString());
+            currentTariff.setOperatorName(operatorName);
         }
         String name;
         while (reader.hasNext()) {
             int type = reader.next();
-            ;
             switch (type) {
                 case XMLStreamConstants.START_ELEMENT -> {
                     name = reader.getLocalName().toUpperCase().replace(HYPHEN, UNDERSCORE);
@@ -94,9 +93,9 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
         String data = getXMLText(reader);
         switch (TariffXmlTag.valueOf(name)) {
             case ID -> currentTariff.setId(data);
-            case TARIFF_NAME -> currentTariff.setTariffName(data);
             case OPERATOR_NAME -> currentTariff.setOperatorName(OperatorName.getNameFromString(data));
-            case MONTH_PAY_ROL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
+            case TARIFF_NAME -> currentTariff.setTariffName(data);
+            case MONTH_PAY_ROLL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
             case SMS_PRISE -> currentTariff.setSmsPrise(Integer.parseInt(data));
             case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
             case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));

@@ -1,7 +1,6 @@
 package by.suprun.task2.builder;
 
 
-import by.suprun.task2.exception.TariffException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +17,7 @@ public class TariffBuilderFactory {
         return instance;
     }
 
-    public AbstractTariffBuilder createTariffBuilder(ParserType type) throws TariffException {
+    public AbstractTariffBuilder createTariffBuilder(ParserType type) {
         switch (type) {
             case SAX -> {
                 return new TariffSaxBuilder();
@@ -29,10 +28,11 @@ public class TariffBuilderFactory {
             }
 
             case STAX -> {
-                return  new TariffStaxBuilder();
+                return new TariffStaxBuilder();
             }
             default -> {
-                throw new TariffException("Constant is not present in enum" + type);
+                logger.info("Constant is not present in enum" + type + "i build default SAX builder ");
+                return new TariffSaxBuilder();
             }
 
         }

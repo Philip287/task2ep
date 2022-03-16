@@ -16,7 +16,7 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.fail;
 
 public class TariffStaxBuilderTest {
-    private static final String XML_FILE = "data\\tariffs1.xml";
+    private static final String XML_FILE = "data/tariffs1.xml";
     private Set<AbstractTariff> expected;
 
     @BeforeClass
@@ -26,10 +26,10 @@ public class TariffStaxBuilderTest {
         expected.add(new CallingTariff("MEG_37540-314-9479",
                 "light",
                 OperatorName.MEGAFON,
+                32,
                 3,
                 0,
-                32,
-                LocalDate.parse("2022-03-19"),
+                LocalDate.parse("2022-03-01"),
                 3,
                 2,
                 2,
@@ -38,11 +38,11 @@ public class TariffStaxBuilderTest {
         expected.add(new InternetTariff("MTS_37534-314-9471",
                 "Standard",
                 OperatorName.MTS,
-                15,
+                35,
                 15,
                 0,
                 LocalDate.parse("2022-03-01"),
-                5600,
+                56000,
                 1,
                 4,
                 4000));
@@ -59,6 +59,6 @@ public class TariffStaxBuilderTest {
         }catch (TariffException e){
             fail(e.getMessage());
         }
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 }

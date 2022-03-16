@@ -1,9 +1,9 @@
 package by.suprun.task2.builder;
 
 import by.suprun.task2.entity.AbstractTariff;
+import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.entity.InternetTariff;
 import by.suprun.task2.entity.OperatorName;
-import by.suprun.task2.entity.CallingTariff;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
@@ -40,14 +40,9 @@ public class TariffHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         logger.info("Method endDocument() by TariffHandler is start.");
-        if (qName.equals(TariffXmlTag.CALLING_TARIFF.getValue()) ||
-                qName.equals(TariffXmlTag.INTERNET_TARIFF.getValue())) {
-
-            if (qName.equals(TariffXmlTag.CALLING_TARIFF.getValue())) {
-                currentTariff = new CallingTariff();
-            } else {
-                currentTariff = new InternetTariff();
-            }
+        if (qName.equals(TariffXmlTag.INTERNET_TARIFF.getValue()) ||
+                qName.equals(TariffXmlTag.CALLING_TARIFF.getValue())) {
+            currentTariff = qName.equals(TariffXmlTag.CALLING_TARIFF.getValue()) ? new CallingTariff() : new InternetTariff();
 
             currentTariff.setId(attributes.getValue(0));
             currentTariff.setOperatorName(OperatorName.getNameFromString(attributes.getValue(1)));
@@ -57,6 +52,7 @@ public class TariffHandler extends DefaultHandler {
                 currentXmlTag = temp;
             }
         }
+
     }
 
     @Override
@@ -78,7 +74,7 @@ public class TariffHandler extends DefaultHandler {
                 case ID -> currentTariff.setId(data);
                 case TARIFF_NAME -> currentTariff.setTariffName(data);
                 case OPERATOR_NAME -> currentTariff.setOperatorName(OperatorName.getNameFromString(data));
-                case MONTH_PAY_ROL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
+                case MONTH_PAY_ROLL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
                 case SMS_PRISE -> currentTariff.setSmsPrise(Integer.parseInt(data));
                 case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
                 case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
