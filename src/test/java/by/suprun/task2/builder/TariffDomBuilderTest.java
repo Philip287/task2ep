@@ -60,6 +60,6 @@ public class TariffDomBuilderTest {
         }catch (TariffException e){
             fail(e.getMessage());
         }
-        assertEquals(actual, expected);
+        assertEquals("", actual, this.expected);
     }
 }
