@@ -117,10 +117,11 @@ public abstract class AbstractTariff {
 
     @Override
     public int hashCode() {
-        long hashCode = 1;
-        hashCode = 31 * hashCode + getId().hashCode()
-                + getTariffName().hashCode() + getOperatorName().hashCode() + getCostConnect()
-                + getMonthPayRoll() + getSmsPrise() + getDateСonnectingTariff().hashCode() * 2L;
+        int hashCode = 1;
+        hashCode = 31 * hashCode + (id != null ? getId().hashCode() : 0)
+                + (tariffName != null ? getTariffName().hashCode() : 0) + (operatorName != null ? getOperatorName().hashCode() : 0)
+                + getCostConnect()  + getMonthPayRoll() + getSmsPrise()
+                + (dateСonnectingTariff != null ? getDateСonnectingTariff().hashCode() : 0);
         return (int) hashCode;
     }
 

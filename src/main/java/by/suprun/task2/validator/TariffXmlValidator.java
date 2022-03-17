@@ -36,6 +36,7 @@ public class TariffXmlValidator {
             logger.warn("XML is invalid" + path, e);
             result = false;
         } catch (IOException e) {
+            result = false;
             logger.error("Can`t read file" + path, e);
         }
         return result;

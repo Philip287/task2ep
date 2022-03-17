@@ -59,6 +59,6 @@ public class TariffStaxBuilderTest {
         }catch (TariffException e){
             fail(e.getMessage());
         }
-        assertEquals(expected, actual);
+        assertEquals(expected.containsAll(actual), actual.containsAll(expected));
     }
 }

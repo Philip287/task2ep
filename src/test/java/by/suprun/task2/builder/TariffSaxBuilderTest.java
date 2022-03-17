@@ -59,6 +59,6 @@ public class TariffSaxBuilderTest {
         } catch (TariffException e) {
             fail(e.getMessage(), e);
         }
-        assertEquals(expected, actual);
+        assertEquals(expected.containsAll(actual), actual.containsAll(expected));
     }
 }

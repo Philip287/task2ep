@@ -123,9 +123,9 @@ public class CallingTariff extends AbstractTariff {
 
     @Override
     public int hashCode() {
-        int hashCode = 1;
-        hashCode = 31 * hashCode + super.hashCode() + preferredNumber + costInNetworkCalls +
-                +costOffNetworkCalls + costLandlinePhoneCalls * 2;
+        int hashCode =  super.hashCode();
+        hashCode = 31 * hashCode  + preferredNumber + costInNetworkCalls +
+                +costOffNetworkCalls + costLandlinePhoneCalls;
         return hashCode;
     }
 

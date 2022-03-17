@@ -126,9 +126,9 @@ public class InternetTariff extends AbstractTariff {
 
     @Override
     public int hashCode() {
-        int hashCode = 1;
-        hashCode = 31 * hashCode + super.hashCode() + getNumberFreeMegabytes() + getCostMegabytesAfterFree()
-                + getCostRoamingMegabytes() + getNumberFreeMegabytesSocialNetworks() * 2;
+        int hashCode = super.hashCode();
+        hashCode = 31 * hashCode  + getNumberFreeMegabytes() + getCostMegabytesAfterFree()
+                + getCostRoamingMegabytes() + getNumberFreeMegabytesSocialNetworks();
         return hashCode;
     }
 
