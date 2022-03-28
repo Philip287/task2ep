@@ -9,17 +9,17 @@ public enum OperatorName {
 
     private final String value;
 
-    OperatorName(String value){
+    OperatorName(String value) {
         this.value = value;
     }
 
-    public String getValue(){
+    public String getValue() {
         return value;
     }
 
-    public static OperatorName getNameFromString(String temp){
-        for(var count : OperatorName.values()){
-            if(count.value.equalsIgnoreCase(temp)){
+    public static OperatorName getNameFromString(String temp) {
+        for (var count : OperatorName.values()) {
+            if (count.value.equalsIgnoreCase(temp)) {
                 return count;
             }
         }

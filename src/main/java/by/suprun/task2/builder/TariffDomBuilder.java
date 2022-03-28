@@ -96,7 +96,7 @@ public class TariffDomBuilder extends AbstractTariffBuilder {
         tariff.setMonthPayRoll(monthPayRoll);
         tariff.setSmsPrise(smsPrise);
         tariff.setCostConnect(costConnect);
-        tariff.setDateСonnectingTariff(dateСonnectingTariff);
+        tariff.setDateConnectingTariff(dateСonnectingTariff);
         return tariff;
     }
 

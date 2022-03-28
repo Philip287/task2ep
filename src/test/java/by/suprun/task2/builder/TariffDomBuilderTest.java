@@ -1,9 +1,9 @@
 package by.suprun.task2.builder;
 
 import by.suprun.task2.entity.AbstractTariff;
+import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.entity.InternetTariff;
 import by.suprun.task2.entity.OperatorName;
-import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.exception.TariffException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -21,7 +21,7 @@ public class TariffDomBuilderTest {
     private Set<AbstractTariff> expected;
 
     @BeforeClass
-    public void setUp(){
+    public void setUp() {
         expected = new HashSet<>();
 
         expected.add(new CallingTariff("MEG_37540-314-9479",
@@ -50,14 +50,14 @@ public class TariffDomBuilderTest {
     }
 
     @Test
-    public void TestTariffDomBuilder(){
+    public void TestTariffDomBuilder() {
         AbstractTariffBuilder builder;
         Set<AbstractTariff> actual = null;
         try {
             builder = TariffBuilderFactory.getInstance().createTariffBuilder(ParserType.DOM);
             builder.buildTariffs(XML_FILE);
             actual = builder.getTariffs();
-        }catch (TariffException e){
+        } catch (TariffException e) {
             fail(e.getMessage());
         }
         assertEquals(expected, actual);

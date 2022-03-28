@@ -2,7 +2,6 @@ package by.suprun.task2.entity;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.OptionalInt;
 
 public abstract class AbstractTariff {
     private String id;
@@ -11,32 +10,33 @@ public abstract class AbstractTariff {
     private int monthPayRoll;
     private int smsPrise;
     private int costConnect;
-    private LocalDate dateСonnectingTariff;
+    private LocalDate dateConnectingTariff;
     private Roaming roaming;
 
     public AbstractTariff() {
     }
 
     public AbstractTariff(String id, String tariffName, OperatorName operatorName, int monthPayRoll, int smsPrise,
-                          int costConnect, LocalDate dateСonnectingTariff, Roaming roaming) {
+                          int costConnect, LocalDate dateConnectingTariff, Roaming roaming) {
         this.id = id;
         this.tariffName = tariffName;
         this.operatorName = operatorName;
         this.monthPayRoll = monthPayRoll;
         this.smsPrise = smsPrise;
         this.costConnect = costConnect;
-        this.dateСonnectingTariff = dateСonnectingTariff;
+        this.dateConnectingTariff = dateConnectingTariff;
         this.roaming = roaming;
     }
+
     public AbstractTariff(String id, String tariffName, OperatorName operatorName, int monthPayRoll, int smsPrise,
-                          int costConnect, LocalDate dateСonnectingTariff) {
+                          int costConnect, LocalDate dateConnectingTariff) {
         this.id = id;
         this.tariffName = tariffName;
         this.operatorName = operatorName;
         this.monthPayRoll = monthPayRoll;
         this.smsPrise = smsPrise;
         this.costConnect = costConnect;
-        this.dateСonnectingTariff = dateСonnectingTariff;
+        this.dateConnectingTariff = dateConnectingTariff;
     }
 
 
@@ -88,19 +88,19 @@ public abstract class AbstractTariff {
         this.costConnect = costConnect;
     }
 
-    public LocalDate getDateСonnectingTariff() {
-        return dateСonnectingTariff;
+    public LocalDate getDateConnectingTariff() {
+        return dateConnectingTariff;
     }
 
-    public void setDateСonnectingTariff(LocalDate dateСonnectingTariff) {
-        this.dateСonnectingTariff = dateСonnectingTariff;
+    public void setDateConnectingTariff(LocalDate dateConnectingTariff) {
+        this.dateConnectingTariff = dateConnectingTariff;
     }
 
     public Roaming getRoaming() {
         return this.roaming;
     }
 
-    public void setRoaming(final Roaming roaming) {
+    public void setRoaming(Roaming roaming) {
         this.roaming = roaming;
     }
 
@@ -109,10 +109,10 @@ public abstract class AbstractTariff {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AbstractTariff that = (AbstractTariff) o;
-        return id == that.id && monthPayRoll == that.monthPayRoll && smsPrise == that.smsPrise
+        return Objects.equals(id, that.id) && monthPayRoll == that.monthPayRoll && smsPrise == that.smsPrise
                 && costConnect == that.costConnect && Objects.equals(tariffName, that.tariffName)
-                && operatorName == that.operatorName && Objects.equals(dateСonnectingTariff, that.dateСonnectingTariff)
-                && roaming == that.roaming;
+                && Objects.equals(operatorName, that.operatorName) &&
+                Objects.equals(dateConnectingTariff, that.dateConnectingTariff) && Objects.equals(roaming, that.roaming);
     }
 
     @Override
@@ -120,9 +120,9 @@ public abstract class AbstractTariff {
         int hashCode = 1;
         hashCode = 31 * hashCode + (id != null ? getId().hashCode() : 0)
                 + (tariffName != null ? getTariffName().hashCode() : 0) + (operatorName != null ? getOperatorName().hashCode() : 0)
-                + getCostConnect()  + getMonthPayRoll() + getSmsPrise()
-                + (dateСonnectingTariff != null ? getDateСonnectingTariff().hashCode() : 0);
-        return (int) hashCode;
+                + getCostConnect() + getMonthPayRoll() + getSmsPrise()
+                + (dateConnectingTariff != null ? getDateConnectingTariff().hashCode() : 0);
+        return hashCode;
     }
 
     @Override
@@ -134,7 +134,7 @@ public abstract class AbstractTariff {
         sb.append(", month pay roll=").append(monthPayRoll);
         sb.append(", sms prise=").append(smsPrise);
         sb.append(", cost connect=").append(costConnect);
-        sb.append(", date connect tariff=").append(dateСonnectingTariff);
+        sb.append(", date connect tariff=").append(dateConnectingTariff);
         sb.append(", roaming=").append(roaming);
         sb.append('}');
         return sb.toString();

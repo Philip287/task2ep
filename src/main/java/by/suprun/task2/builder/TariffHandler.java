@@ -7,7 +7,6 @@ import by.suprun.task2.entity.OperatorName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.time.LocalDate;
@@ -38,7 +37,7 @@ public class TariffHandler extends DefaultHandler {
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
         logger.info("Method startDocument() by TariffHandler is start.");
         if (qName.equals(TariffXmlTag.INTERNET_TARIFF.getValue()) ||
                 qName.equals(TariffXmlTag.CALLING_TARIFF.getValue())) {
@@ -56,7 +55,7 @@ public class TariffHandler extends DefaultHandler {
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(String uri, String localName, String qName) {
         String callTag = TariffXmlTag.CALLING_TARIFF.getValue();
         String internetTag = TariffXmlTag.INTERNET_TARIFF.getValue();
 
@@ -67,7 +66,7 @@ public class TariffHandler extends DefaultHandler {
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    public void characters(char[] ch, int start, int length) {
         String data = new String(ch, start, length);
 
         if (currentXmlTag != null) {
@@ -78,7 +77,7 @@ public class TariffHandler extends DefaultHandler {
                 case MONTH_PAY_ROLL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
                 case SMS_PRISE -> currentTariff.setSmsPrise(Integer.parseInt(data));
                 case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
-                case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
+                case DATE_CONNECTING_TARIFF -> currentTariff.setDateConnectingTariff(LocalDate.parse(data));
                 case COST_IN_NETWORK_CALLS -> {
                     if (currentTariff instanceof CallingTariff) {
                         CallingTariff temp = (CallingTariff) currentTariff;

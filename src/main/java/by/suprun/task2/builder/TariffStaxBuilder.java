@@ -4,7 +4,6 @@ import by.suprun.task2.entity.AbstractTariff;
 import by.suprun.task2.entity.CallingTariff;
 import by.suprun.task2.entity.InternetTariff;
 import by.suprun.task2.entity.OperatorName;
-import by.suprun.task2.exception.TariffException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,7 +28,7 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
     }
 
     @Override
-    public void buildTariffs(String path) throws TariffException {
+    public void buildTariffs(String path) {
         ClassLoader loader = getClass().getClassLoader();
         URL resource = loader.getResource(path);
 
@@ -88,7 +87,8 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
         throw new XMLStreamException("unknown tag");
     }
 
-    private void buildTariffProperties(XMLStreamReader reader, String name, AbstractTariff currentTariff) throws XMLStreamException {
+    private void buildTariffProperties(XMLStreamReader reader, String name, AbstractTariff currentTariff)
+            throws XMLStreamException {
         String data = getXMLText(reader);
         switch (TariffXmlTag.valueOf(name)) {
             case ID -> currentTariff.setId(data);
@@ -97,7 +97,7 @@ public class TariffStaxBuilder extends AbstractTariffBuilder {
             case MONTH_PAY_ROLL -> currentTariff.setMonthPayRoll(Integer.parseInt(data));
             case SMS_PRISE -> currentTariff.setSmsPrise(Integer.parseInt(data));
             case COST_CONNECT -> currentTariff.setCostConnect(Integer.parseInt(data));
-            case DATE_CONNECTING_TARIFF -> currentTariff.setDateСonnectingTariff(LocalDate.parse(data));
+            case DATE_CONNECTING_TARIFF -> currentTariff.setDateConnectingTariff(LocalDate.parse(data));
             case COST_IN_NETWORK_CALLS -> {
                 CallingTariff temp = (CallingTariff) currentTariff;
                 temp.setCostInNetworkCalls(Integer.parseInt(data));

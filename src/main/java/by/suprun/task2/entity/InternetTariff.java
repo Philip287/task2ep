@@ -1,6 +1,7 @@
 package by.suprun.task2.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class InternetTariff extends AbstractTariff {
     private int numberFreeMegabytes;
@@ -13,10 +14,10 @@ public class InternetTariff extends AbstractTariff {
     }
 
     public InternetTariff(String id, String tariffName, OperatorName operatorName, int monthPayRoll,
-                          int smsPrise, int costConnect, LocalDate dateСonnectingTariff, int numberFreeMegabytes,
+                          int smsPrise, int costConnect, LocalDate dateConnectingTariff, int numberFreeMegabytes,
                           int costMegabytesAfterFree, int costRoamingMegabytes, int numberFreeMegabytesSocialNetworks,
                           Roaming roaming) {
-        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff, roaming);
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateConnectingTariff, roaming);
         this.numberFreeMegabytes = numberFreeMegabytes;
         this.costMegabytesAfterFree = costMegabytesAfterFree;
         this.costRoamingMegabytes = costRoamingMegabytes;
@@ -25,10 +26,10 @@ public class InternetTariff extends AbstractTariff {
 
     public InternetTariff(String id, String tariffName, OperatorName operatorName,
                           int monthPayRoll, int smsPrise, int costConnect,
-                          LocalDate dateСonnectingTariff, int numberFreeMegabytes,
+                          LocalDate dateConnectingTariff, int numberFreeMegabytes,
                           int costMegabytesAfterFree, int costRoamingMegabytes,
                           int numberFreeMegabytesSocialNetworks) {
-        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff);
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateConnectingTariff);
         this.numberFreeMegabytes = numberFreeMegabytes;
         this.costMegabytesAfterFree = costMegabytesAfterFree;
         this.costRoamingMegabytes = costRoamingMegabytes;
@@ -40,7 +41,7 @@ public class InternetTariff extends AbstractTariff {
                                                       int numberFreeMegabytesSocialNetworks) {
 
         return new InternetTariff(tariff.getId(), tariff.getTariffName(), tariff.getOperatorName(), tariff.getMonthPayRoll(),
-                tariff.getSmsPrise(), tariff.getCostConnect(), tariff.getDateСonnectingTariff(),
+                tariff.getSmsPrise(), tariff.getCostConnect(), tariff.getDateConnectingTariff(),
                 numberFreeMegabytes, costMegabytesAfterFree, costRoamingMegabytes, numberFreeMegabytesSocialNetworks);
     }
 
@@ -88,46 +89,19 @@ public class InternetTariff extends AbstractTariff {
             return false;
         }
         InternetTariff that = (InternetTariff) obj;
-        if (getId() != that.getId()) {
-            return false;
-        }
-        if (getMonthPayRoll() != that.getMonthPayRoll()) {
-            return false;
-        }
-        if (getSmsPrise() != that.getSmsPrise()) {
-            return false;
-        }
-        if (getCostConnect() != that.getCostConnect()) {
-            return false;
-        }
-        if (!getTariffName().equals(that.getTariffName())) {
-            return false;
-        }
-        if (!getOperatorName().equals(that.getOperatorName())) {
-            return false;
-        }
-        if (!getDateСonnectingTariff().equals(that.getDateСonnectingTariff())) {
-            return false;
-        }
-        if (getNumberFreeMegabytes() != that.getNumberFreeMegabytes()) {
-            return false;
-        }
-        if (getCostMegabytesAfterFree() != that.getCostMegabytesAfterFree()) {
-            return false;
-        }
-        if (getCostRoamingMegabytes() != that.getCostRoamingMegabytes()) {
-            return false;
-        }
-        if (getNumberFreeMegabytesSocialNetworks() != that.getNumberFreeMegabytesSocialNetworks()) {
-            return false;
-        }
-        return true;
+        return (Objects.equals(getId(), that.getId())) && getMonthPayRoll() == that.getMonthPayRoll()
+                && getSmsPrise() == that.getSmsPrise() && getCostConnect() == that.getCostConnect()
+                && Objects.equals(getTariffName(), that.getTariffName()) && Objects.equals(getOperatorName(), that.getOperatorName())
+                && Objects.equals(getDateConnectingTariff(), that.getDateConnectingTariff())
+                && getNumberFreeMegabytes() == that.getNumberFreeMegabytes() && getCostMegabytesAfterFree() == that.getCostMegabytesAfterFree()
+                && getCostRoamingMegabytes() == that.getCostRoamingMegabytes() && getNumberFreeMegabytesSocialNetworks() == that.getNumberFreeMegabytesSocialNetworks();
+
     }
 
     @Override
     public int hashCode() {
         int hashCode = super.hashCode();
-        hashCode = 31 * hashCode  + getNumberFreeMegabytes() + getCostMegabytesAfterFree()
+        hashCode = 31 * hashCode + getNumberFreeMegabytes() + getCostMegabytesAfterFree()
                 + getCostRoamingMegabytes() + getNumberFreeMegabytesSocialNetworks();
         return hashCode;
     }
@@ -141,7 +115,7 @@ public class InternetTariff extends AbstractTariff {
         sb.append(", month pay roll=").append(getMonthPayRoll());
         sb.append(", sms prise=").append(getSmsPrise());
         sb.append(", cost connect=").append(getCostConnect());
-        sb.append(", date connect tariff=").append(getDateСonnectingTariff());
+        sb.append(", date connect tariff=").append(getDateConnectingTariff());
         sb.append(", number free megabytes=").append(numberFreeMegabytes);
         sb.append(", cost megabytes after free=").append(costMegabytesAfterFree);
         sb.append(", cost roaming megabytes=").append(costRoamingMegabytes);

@@ -1,6 +1,7 @@
 package by.suprun.task2.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class CallingTariff extends AbstractTariff {
     private int preferredNumber;
@@ -13,9 +14,9 @@ public class CallingTariff extends AbstractTariff {
     }
 
     public CallingTariff(String id, String tariffName, OperatorName operatorName, int monthPayRoll, int smsPrise,
-                         int costConnect, LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
+                         int costConnect, LocalDate dateConnectingTariff, int preferredNumber, int costInNetworkCalls,
                          int costOffNetworkCalls, int costLandlinePhoneCalls, Roaming roaming) {
-        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff, roaming);
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateConnectingTariff, roaming);
         this.preferredNumber = preferredNumber;
         this.costInNetworkCalls = costInNetworkCalls;
         this.costOffNetworkCalls = costOffNetworkCalls;
@@ -24,9 +25,9 @@ public class CallingTariff extends AbstractTariff {
 
     public CallingTariff(String id, String tariffName, OperatorName operatorName,
                          int monthPayRoll, int smsPrise, int costConnect,
-                         LocalDate dateСonnectingTariff, int preferredNumber, int costInNetworkCalls,
+                         LocalDate dateConnectingTariff, int preferredNumber, int costInNetworkCalls,
                          int costOffNetworkCalls, int costLandlinePhoneCalls) {
-        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateСonnectingTariff);
+        super(id, tariffName, operatorName, monthPayRoll, smsPrise, costConnect, dateConnectingTariff);
         this.preferredNumber = preferredNumber;
         this.costInNetworkCalls = costInNetworkCalls;
         this.costOffNetworkCalls = costOffNetworkCalls;
@@ -37,7 +38,7 @@ public class CallingTariff extends AbstractTariff {
                                                     int costOffNetworkCalls, int costLandlinePhoneCalls) {
 
         return new CallingTariff(tariff.getId(), tariff.getTariffName(), tariff.getOperatorName(), tariff.getMonthPayRoll(),
-                tariff.getSmsPrise(), tariff.getCostConnect(), tariff.getDateСonnectingTariff(),
+                tariff.getSmsPrise(), tariff.getCostConnect(), tariff.getDateConnectingTariff(),
                 preferredNumber, costInNetworkCalls, costOffNetworkCalls, costLandlinePhoneCalls);
     }
 
@@ -85,46 +86,19 @@ public class CallingTariff extends AbstractTariff {
             return false;
         }
         CallingTariff that = (CallingTariff) obj;
-        if (getId() != that.getId()) {
-            return false;
-        }
-        if (getMonthPayRoll() != that.getMonthPayRoll()) {
-            return false;
-        }
-        if (getSmsPrise() != that.getSmsPrise()) {
-            return false;
-        }
-        if (getCostConnect() != that.getCostConnect()) {
-            return false;
-        }
-        if (!getTariffName().equals(that.getTariffName())) {
-            return false;
-        }
-        if (!getOperatorName().equals(that.getOperatorName())) {
-            return false;
-        }
-        if (!getDateСonnectingTariff().equals(that.getDateСonnectingTariff())) {
-            return false;
-        }
-        if (getPreferredNumber() != that.getPreferredNumber()) {
-            return false;
-        }
-        if (getCostInNetworkCalls() != that.getCostInNetworkCalls()) {
-            return false;
-        }
-        if (getCostOffNetworkCalls() != that.getCostOffNetworkCalls()) {
-            return false;
-        }
-        if (getCostLandlinePhoneCalls() != that.getCostLandlinePhoneCalls()) {
-            return false;
-        }
-        return true;
+        return (Objects.equals(getId(), that.getId())) && getMonthPayRoll() == that.getMonthPayRoll()
+                && getSmsPrise() == that.getSmsPrise() && getCostConnect() == that.getCostConnect()
+                && Objects.equals(getTariffName(), that.getTariffName()) && Objects.equals(getOperatorName(), that.getOperatorName())
+                && Objects.equals(getDateConnectingTariff(), that.getDateConnectingTariff()) && getPreferredNumber() == that.getPreferredNumber()
+                && getCostInNetworkCalls() == that.getCostInNetworkCalls() && getCostOffNetworkCalls() == that.getCostOffNetworkCalls()
+                && getCostLandlinePhoneCalls() == that.getCostLandlinePhoneCalls() &&
+                Objects.equals(getRoaming(), that.getRoaming());
     }
 
     @Override
     public int hashCode() {
-        int hashCode =  super.hashCode();
-        hashCode = 31 * hashCode  + preferredNumber + costInNetworkCalls +
+        int hashCode = super.hashCode();
+        hashCode = 31 * hashCode + preferredNumber + costInNetworkCalls +
                 +costOffNetworkCalls + costLandlinePhoneCalls;
         return hashCode;
     }
